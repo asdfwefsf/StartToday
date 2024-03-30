@@ -13,7 +13,7 @@ android {
         applicationId = "com.company.starttoday"
         minSdk = 30
         targetSdk = 34
-        versionCode = 1
+        versionCode = 3
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -125,14 +125,14 @@ dependencies {
     // SplashScreen
     implementation(Deps.SPLASHSCREEN)
 
+
     implementation("androidx.work:work-runtime-ktx:2.9.0")
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
 
 
     implementation("com.google.android.gms:play-services-location:21.2.0")
 
-//    implementation("net.sourceforge.jexcelapi:jxl:2.6.12")
-//    implementation("com.example:android-excel-library:1.0.0")
+
 
 }
 

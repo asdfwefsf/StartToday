@@ -33,7 +33,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class testViewModel : ViewModel() {
+class splashScreen : ViewModel() {
     private val _isReady = MutableStateFlow(false)
     val isReady = _isReady.asStateFlow()
     init {
@@ -47,7 +47,7 @@ class testViewModel : ViewModel() {
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val splashViewModel by viewModels<testViewModel>()
+    private val splashViewModel by viewModels<splashScreen>()
     @Inject lateinit var thingonDB : ThingOnDatabase
     @Inject lateinit var repository: StringRepositoryImpl
 
@@ -89,11 +89,6 @@ class MainActivity : ComponentActivity() {
             }
         }
         scheduleFetchImageLinkWork(this)
-
-
-
-
-
         setContent {
             StartTodayTheme {
 
@@ -132,6 +127,7 @@ class MainActivity : ComponentActivity() {
                     requestPermissionLauncher.launch(
                         arrayOf(
                             Manifest.permission.POST_NOTIFICATIONS,
+                            Manifest.permission.SCHEDULE_EXACT_ALARM,
                         )
                     )
                 }
@@ -143,22 +139,25 @@ class MainActivity : ComponentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permissions = arrayOf(
                 Manifest.permission.POST_NOTIFICATIONS,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.SCHEDULE_EXACT_ALARM
             )
 
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS,
                 ) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.SCHEDULE_EXACT_ALARM,
+                ) ==
                 PackageManager.PERMISSION_GRANTED
             ) {
-                // FCM SDK (and your app) can post notifications.
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) ||
-                shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+                shouldShowRequestPermissionRationale(Manifest.permission.SCHEDULE_EXACT_ALARM)
             ) {
                 showPermissionRationalDialog()
             } else {
-                // Directly ask for the permission
                 requestPermissionLauncher.launch(permissions)
             }
         }
