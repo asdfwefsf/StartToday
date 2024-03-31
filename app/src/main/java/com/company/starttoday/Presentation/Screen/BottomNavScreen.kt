@@ -47,11 +47,7 @@ fun BottomNav() {
 
 
     val items = listOf(
-//        BottomNavItem(
-//            title = "Main",
-//            selectedIcon = Icons.Filled.Home,
-//            unselectedIcon = Icons.Outlined.Home,
-//        ),
+
 
         BottomNavItem(
             title = "Alarm",
@@ -73,11 +69,7 @@ fun BottomNav() {
             unselectedIcon = R.drawable.routine_icon,
         ),
 
-//        BottomNavItem(
-//            title = "Weather",
-//            selectedIcon = R.drawable.weatherscreen,
-//            unselectedIcon = R.drawable.weatherscreen
-//        )
+
 
     )
 
@@ -185,10 +177,7 @@ fun BottomNav() {
                 RoutineScreen(navController, state = state, onEvent = viewModel::onEvent)
             }
 
-//            composable(route = Screen.WeatherScreen.route) {
-//
-//                WeatherScreen()
-//            }
+
 
         }
 

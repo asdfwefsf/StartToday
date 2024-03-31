@@ -5,7 +5,6 @@ sealed class Screen (val route : String) {
     object AlarmScreen : Screen("Alarm")
     object RoutineScreen : Screen("Routine")
     object setAlarmScreen : Screen("setAlarm")
-    object WeatherScreen : Screen("Weather")
 }
 
 

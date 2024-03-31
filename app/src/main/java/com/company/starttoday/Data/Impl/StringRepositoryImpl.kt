@@ -4,6 +4,7 @@ import com.company.starttoday.Core.Network.API.StringAPI
 import com.company.starttoday.Data.ThingOnData.ThingOn
 import com.company.starttoday.Data.ThingOnData.ThingOnDao
 import com.company.starttoday.Data.stringEntity
+import com.company.starttoday.Repository.UpdateStringRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class StringRepositoryImpl @Inject constructor(
     private val stringAPI: StringAPI,
     private val dao: ThingOnDao
-) {
+) : UpdateStringRepository {
 
     private val _strings = MutableStateFlow<List<stringEntity>>(emptyList())
 
@@ -54,15 +55,23 @@ class StringRepositoryImpl @Inject constructor(
     }
 
     suspend fun updateUi() {
+//        dao.getAll().collect {
+//            _categories.value = it.map {
+//                it.thingOn
+//            }
+//        }
+    }
+
+    fun getThingOn() {
+        dao.getAllList()
+    }
+
+    override suspend fun updateString() {
         dao.getAll().collect {
             _categories.value = it.map {
                 it.thingOn
             }
         }
-    }
-
-    fun getThingOn() {
-        dao.getAllList()
     }
 
 }

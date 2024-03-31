@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Data.Impl.StringRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.ThingOnDatabase
+import com.company.starttoday.Domain.UseCases.UpdateStringUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -11,6 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StringAllViewModel @Inject constructor(
+    private val useCase: UpdateStringUseCase,
     private val repository: StringRepositoryImpl,
     private val counter : ImageCounter,
     private val database: ThingOnDatabase
@@ -18,7 +20,6 @@ class StringAllViewModel @Inject constructor(
 ) : ViewModel() {
 
     val categories: StateFlow<List<String>> = repository.categories
-
 
     val page = counter.count
 
@@ -34,19 +35,13 @@ class StringAllViewModel @Inject constructor(
     }
     init {
         viewModelScope.launch {
-//            repository.getCategories()
 
 
-            repository.updateUi()
+//            repository.updateUi()
 
-//            repository.getCategories()
-
+            useCase.updateString()
         }
     }
-//            repository.getCategories()
-
-
-//            repository.getCategories()
 
 
 
