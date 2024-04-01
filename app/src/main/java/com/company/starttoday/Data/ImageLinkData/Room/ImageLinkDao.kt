@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.ImageLinkData
+package com.company.starttoday.Data.ImageLinkData.Room
 
 import androidx.room.Dao
 import androidx.room.Query

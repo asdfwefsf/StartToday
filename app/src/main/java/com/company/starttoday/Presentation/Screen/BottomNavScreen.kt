@@ -29,8 +29,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.company.starttoday.Presentation.Alarm.AlarmScreen
 import com.company.starttoday.Presentation.Alarm.setAlarmScreen
-import com.company.starttoday.Presentation.Screens.BottomNavItem
-import com.company.starttoday.Presentation.Screens.Screen
+import com.company.starttoday.Presentation.Screen.Screens.BottomNavItem
+import com.company.starttoday.Presentation.Screen.Screens.Screen
 import com.company.starttoday.Presentation.ViewModel.RoutineViewModel
 import com.company.starttoday.Presentation.ViewModel.StringAllViewModel
 import com.company.starttoday.R
@@ -42,7 +42,8 @@ fun BottomNav() {
 
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     val bottomNavVisibleRoutes =
-        listOf(Screen.MainScreen.route , Screen.AlarmScreen.route,
+        listOf(
+            Screen.MainScreen.route , Screen.AlarmScreen.route,
                Screen.RoutineScreen.route)
 
 

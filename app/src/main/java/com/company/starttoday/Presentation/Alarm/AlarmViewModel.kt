@@ -2,8 +2,8 @@ package com.company.starttoday.Presentation.Alarm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Data.AlarmData.Alarm
-import com.company.starttoday.Data.AlarmData.AlarmDao
+import com.company.starttoday.Data.AlarmData.Room.Alarm
+import com.company.starttoday.Data.AlarmData.Room.AlarmDao
 import com.company.starttoday.Presentation.ViewModel.AlarmSaver
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

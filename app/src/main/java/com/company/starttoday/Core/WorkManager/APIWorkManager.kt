@@ -9,7 +9,7 @@ import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.company.starttoday.Data.Impl.ImageLinkImpl
+import com.company.starttoday.Domain.UseCases.GetImageUseCase
 import com.company.starttoday.Domain.UseCases.GetStringUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -21,14 +21,15 @@ import java.util.concurrent.TimeUnit
 class APIWorkManager @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
-    private val imageLinkImpl : ImageLinkImpl,
+//    private val imageLinkImpl : ImageLinkImpl,
 //    private val stringRepositoryImpl : StringRepositoryImpl,
+    private val getImageUseCase: GetImageUseCase,
     private val getStringUseCase: GetStringUseCase
 
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            imageLinkImpl.getImageLink()
+            getImageUseCase.getImage()
 //            stringRepositoryImpl.getCategories()
             getStringUseCase.getString()
             Log.d("karina" , "karinaTt")

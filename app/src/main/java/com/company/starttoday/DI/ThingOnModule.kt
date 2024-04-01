@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.company.starttoday.Core.Network.API.StringAPI
 import com.company.starttoday.Data.Impl.StringRepositoryImpl
-import com.company.starttoday.Data.ThingOnData.ThingOnDao
-import com.company.starttoday.Data.ThingOnData.ThingOnDatabase
+import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
+import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

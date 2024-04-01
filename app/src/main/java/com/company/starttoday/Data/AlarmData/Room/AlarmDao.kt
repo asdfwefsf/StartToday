@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.AlarmData
+package com.company.starttoday.Data.AlarmData.Room
 
 import androidx.room.Dao
 import androidx.room.Query

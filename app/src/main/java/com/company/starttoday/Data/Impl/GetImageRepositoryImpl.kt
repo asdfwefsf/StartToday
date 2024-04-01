@@ -3,23 +3,16 @@ package com.company.starttoday.Data.Impl
 import com.company.starttoday.Core.Network.API.ImageLinkAPI
 import com.company.starttoday.Data.ImageLinkData.Room.ImageLink
 import com.company.starttoday.Data.ImageLinkData.Room.ImageLinkDao
+import com.company.starttoday.Repository.GetImageRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class ImageLinkImpl @Inject constructor(
+class GetImageRepositoryImpl @Inject constructor(
     private val imageLinkAPI : ImageLinkAPI,
     private val dao : ImageLinkDao
-) {
-
-    private val _imageLinks = MutableStateFlow<List<String>>(emptyList())
-
-    val imageLinks: StateFlow<List<String>>
-        get() = _imageLinks
-
-    suspend fun getImageLink() {
+) : GetImageRepository {
+    override suspend fun getImage() {
         val result = imageLinkAPI.getImages()
         val resultBody = result.body() ?: emptyList()
         if (result.isSuccessful && result.body() != null) {
@@ -32,14 +25,5 @@ class ImageLinkImpl @Inject constructor(
             }
         }
     }
-
-    suspend fun updateUi() {
-        dao.getImageLink().collect {
-            _imageLinks.value = it.map {
-                it.imageLink
-            }
-        }
-    }
-
 
 }

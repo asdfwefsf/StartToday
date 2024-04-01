@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.ThingOnData
+package com.company.starttoday.Data.ThingOnData.Room
 
 import androidx.room.Dao
 import androidx.room.Query

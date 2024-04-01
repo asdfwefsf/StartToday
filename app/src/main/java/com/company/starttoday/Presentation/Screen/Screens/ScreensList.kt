@@ -1,4 +1,4 @@
-package com.company.starttoday.Presentation.Screens
+package com.company.starttoday.Presentation.Screen.Screens
 
 sealed class Screen (val route : String) {
     object MainScreen : Screen("Main")

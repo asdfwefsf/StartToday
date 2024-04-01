@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.company.starttoday.Data.AlarmData.AlarmItem
 import com.company.starttoday.Data.AlarmData.AndroidAlarmScheduler
+import com.company.starttoday.Domain.Alarm.Entity.AlarmItem
 import com.company.starttoday.R
+import com.company.starttoday.Theme.Sizes
 import java.time.LocalDateTime
 
 @Composable
@@ -59,7 +60,7 @@ fun TimePickerSlider(navController: NavController) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(Sizes.xlarge)
     ) {
         val (timeSlider, confirmButton) = createRefs()
 
@@ -73,7 +74,7 @@ fun TimePickerSlider(navController: NavController) {
             // 시간을 선택하는 슬라이더
             Text(text = "알람 시작 시간" , color = MaterialTheme.colorScheme.onSurface)
 
-            Spacer(Modifier.size(8.dp))
+            Spacer(Modifier.size(Sizes.medium))
 
             Text(text = "시간: ${startHours.toInt()}" , color = MaterialTheme.colorScheme.onSurface)
             Slider(
@@ -102,7 +103,7 @@ fun TimePickerSlider(navController: NavController) {
 
             Text(text = "알람 종료 시간" , color = MaterialTheme.colorScheme.onSurface)
 
-            Spacer(Modifier.size(8.dp))
+            Spacer(Modifier.size(Sizes.medium))
 
             Text(text = "시간: ${endHours.toInt()}" , color = MaterialTheme.colorScheme.onSurface)
             Slider(
@@ -148,8 +149,8 @@ fun TimePickerSlider(navController: NavController) {
                 .clip(CircleShape)
                 .size(50.dp)
                 .constrainAs(confirmButton) {
-                    top.linkTo(timeSlider.bottom, margin = 12.dp)
-                    end.linkTo(timeSlider.end, margin = 12.dp)
+                    top.linkTo(timeSlider.bottom, margin = Sizes.large)
+                    end.linkTo(timeSlider.end, margin = Sizes.large)
                 }
         )
     }

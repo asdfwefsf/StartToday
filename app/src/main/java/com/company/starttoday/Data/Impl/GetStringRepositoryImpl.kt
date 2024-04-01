@@ -1,8 +1,8 @@
 package com.company.starttoday.Data.Impl
 
 import com.company.starttoday.Core.Network.API.StringAPI
-import com.company.starttoday.Data.ThingOnData.ThingOn
-import com.company.starttoday.Data.ThingOnData.ThingOnDao
+import com.company.starttoday.Data.ThingOnData.Room.ThingOn
+import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
 import com.company.starttoday.Repository.GetStringRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -2,7 +2,7 @@ package com.company.starttoday.Presentation.ImageLink
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Data.ImageLinkData.ImageLinkDatabase
+import com.company.starttoday.Data.ImageLinkData.Room.ImageLinkDatabase
 import com.company.starttoday.Data.Impl.ImageLinkImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

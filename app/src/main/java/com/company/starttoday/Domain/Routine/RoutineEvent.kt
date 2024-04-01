@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Routine
 
-import com.company.starttoday.Data.RoutineData.Routine
+import com.company.starttoday.Data.RoutineData.Room.Routine
 import com.company.starttoday.Data.RoutineData.RoutineType
 
 sealed interface RoutineEvent {

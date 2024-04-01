@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.ImageLinkData
+package com.company.starttoday.Data.ImageLinkData.Room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

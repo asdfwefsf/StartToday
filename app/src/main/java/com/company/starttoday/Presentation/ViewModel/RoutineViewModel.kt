@@ -2,8 +2,8 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Data.RoutineData.Routine
-import com.company.starttoday.Data.RoutineData.RoutineDao
+import com.company.starttoday.Data.RoutineData.Room.Routine
+import com.company.starttoday.Data.RoutineData.Room.RoutineDao
 import com.company.starttoday.Data.RoutineData.RoutineState
 import com.company.starttoday.Data.RoutineData.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent

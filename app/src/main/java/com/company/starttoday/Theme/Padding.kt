@@ -2,7 +2,7 @@ package com.company.starttoday.Theme
 
 import androidx.compose.ui.unit.dp
 
-object Paddings {
+object Sizes {
     val none = 0.dp
     val xsmall = 2.dp
     val small = 4.dp

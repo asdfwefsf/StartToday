@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.ImageLinkData
+package com.company.starttoday.Data.ImageLinkData.Room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.RoutineData
+package com.company.starttoday.Data.RoutineData.Room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

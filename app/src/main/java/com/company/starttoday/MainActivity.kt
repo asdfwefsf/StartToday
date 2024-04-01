@@ -23,7 +23,7 @@ import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Core.WorkManager.scheduleFetchImageLinkWork
 import com.company.starttoday.Core.WorkManager.scheduleImmediateWork
 import com.company.starttoday.Data.Impl.StringRepositoryImpl
-import com.company.starttoday.Data.ThingOnData.ThingOnDatabase
+import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Presentation.Screen.BottomNav
 import com.company.starttoday.Theme.StartTodayTheme
 import dagger.hilt.android.AndroidEntryPoint
