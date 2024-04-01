@@ -19,4 +19,9 @@ class MainApplication  : Application() , Configuration.Provider {
             .setWorkerFactory(workerFactory)
             .build()
 
+
+    override fun onCreate() {
+        super.onCreate()
+
+    }
 }

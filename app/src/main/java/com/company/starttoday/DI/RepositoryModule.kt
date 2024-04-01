@@ -1,6 +1,8 @@
 package com.company.starttoday.DI
 
+import com.company.starttoday.Data.Impl.GetStringRepositoryImpl
 import com.company.starttoday.Data.Impl.StringRepositoryImpl
+import com.company.starttoday.Repository.GetStringRepository
 import com.company.starttoday.Repository.UpdateStringRepository
 import dagger.Module
 import dagger.Provides
@@ -13,4 +15,8 @@ object RepositoryModule {
 
     @Provides
     fun provideStringRepository(impl: StringRepositoryImpl): UpdateStringRepository = impl
+
+    @Provides
+    fun provideGetStringRepository(impl : GetStringRepositoryImpl) : GetStringRepository = impl
+
 }

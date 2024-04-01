@@ -10,7 +10,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.company.starttoday.Data.Impl.ImageLinkImpl
-import com.company.starttoday.Data.Impl.StringRepositoryImpl
+import com.company.starttoday.Domain.UseCases.GetStringUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.coroutineScope
@@ -22,13 +22,16 @@ class APIWorkManager @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val imageLinkImpl : ImageLinkImpl,
-    private val stringRepositoryImpl : StringRepositoryImpl
+//    private val stringRepositoryImpl : StringRepositoryImpl,
+    private val getStringUseCase: GetStringUseCase
+
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
             imageLinkImpl.getImageLink()
-            stringRepositoryImpl.getCategories()
-            Log.d("karina" , "karinaT")
+//            stringRepositoryImpl.getCategories()
+            getStringUseCase.getString()
+            Log.d("karina" , "karinaTt")
 //            return Result.success()
         } catch (e: Exception) {
             Log.d("karina" , "karinaF")
@@ -47,8 +50,8 @@ fun scheduleFetchImageLinkWork(context: Context) {
     val currentDate = Calendar.getInstance()
 
     val dueDate = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, 8)
-        set(Calendar.MINUTE, 0
+        set(Calendar.HOUR_OF_DAY, 3)
+        set(Calendar.MINUTE, 45
         )
         set(Calendar.SECOND, 0)
         if (before(currentDate)) {
