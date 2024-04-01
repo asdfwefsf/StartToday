@@ -2,8 +2,10 @@ package com.company.starttoday
 
 import android.Manifest
 import android.animation.ObjectAnimator
+import android.app.AlarmManager
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -22,7 +24,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Core.WorkManager.scheduleFetchImageLinkWork
 import com.company.starttoday.Core.WorkManager.scheduleImmediateWork
-import com.company.starttoday.Data.Impl.StringRepositoryImpl
+import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Presentation.Screen.BottomNav
 import com.company.starttoday.Theme.StartTodayTheme
@@ -48,12 +50,16 @@ class splashScreen : ViewModel() {
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val splashViewModel by viewModels<splashScreen>()
+    private lateinit var alarmManager: AlarmManager
+
     @Inject lateinit var thingonDB : ThingOnDatabase
-    @Inject lateinit var repository: StringRepositoryImpl
+    @Inject lateinit var repository: UpdateThingOnRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        installSplashScreen()
         super.onCreate(savedInstanceState)
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
         checkFirstRun(context = this)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
@@ -99,6 +105,7 @@ class MainActivity : ComponentActivity() {
                     BottomNav()
 
                     askNotificationPermission()
+                    askPermissionForExactAlarm(this)
                 }
 
 
@@ -119,6 +126,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+
     fun showPermissionRationalDialog() {
         AlertDialog.Builder(this)
             .setMessage("알림 권한이 없으면 알림을 받을 수 없습니다.")
@@ -127,13 +136,15 @@ class MainActivity : ComponentActivity() {
                     requestPermissionLauncher.launch(
                         arrayOf(
                             Manifest.permission.POST_NOTIFICATIONS,
-                            Manifest.permission.SCHEDULE_EXACT_ALARM,
                         )
                     )
                 }
+
             }.setNegativeButton("취소") { dialogInterface, _ -> dialogInterface.cancel() }
             .show()
     }
+
+
     private fun askNotificationPermission() {
         // This is only necessary for API level >= 33 (TIRAMISU)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -159,6 +170,20 @@ class MainActivity : ComponentActivity() {
                 showPermissionRationalDialog()
             } else {
                 requestPermissionLauncher.launch(permissions)
+            }
+        }
+    }
+
+
+    fun askPermissionForExactAlarm(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            if (!alarmManager.canScheduleExactAlarms()) {
+                // 권한이 없으면 사용자에게 권한 요청
+                val intent = Intent(AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED)
+                context.startActivity(intent)
+            } else {
+                // 권한이 있으면 다음 단계로 (여기서는 예시로 비워둠)
             }
         }
     }

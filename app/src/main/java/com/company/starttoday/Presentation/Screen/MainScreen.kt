@@ -34,45 +34,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.company.starttoday.Presentation.ImageLink.ImageLinkViewModel
-import com.company.starttoday.Presentation.ViewModel.StringAllViewModel
+import com.company.starttoday.Presentation.ViewModel.ThingOnViewModel
+import com.company.starttoday.Theme.Sizes
 import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
-    navController: NavController,
-    count : Int,
-//    repository: StringRepositoryImpl,
-//    imateLinkRepository : ImageLinkImpl
+    count: Int,
+) {
 
-    ) {
-
-
-    val pictures = listOf(
-//        R.drawable.ic_launcher_foreground,
-//        R.drawable.ic_launcher_background,
-//        R.drawable.ic_launcher_foreground,
-//        R.drawable.ic_launcher_background,
-//        R.drawable.ic_launcher_foreground
-        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/09/18/1e586277-48ba-4e8a-9b98-d8cdbe075d86.jpg",
-        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/09/18/1e586277-48ba-4e8a-9b98-d8cdbe075d86.jpg",
-        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/09/18/1e586277-48ba-4e8a-9b98-d8cdbe075d86.jpg",
-        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/09/18/1e586277-48ba-4e8a-9b98-d8cdbe075d86.jpg",
-        "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2022/09/18/1e586277-48ba-4e8a-9b98-d8cdbe075d86.jpg"
-
-
-    )
-
-
-    val stringAllViewModel: StringAllViewModel = hiltViewModel()
+    val stringAllViewModel: ThingOnViewModel = hiltViewModel()
     val categories = stringAllViewModel.categories.collectAsState()
 
-    val imageLinkViewModel : ImageLinkViewModel = hiltViewModel()
+    val imageLinkViewModel: ImageLinkViewModel = hiltViewModel()
     val imageLinklist = imageLinkViewModel.imageLinks.collectAsState()
 
     var test = imageLinklist.value
@@ -101,14 +80,6 @@ fun MainScreen(
                     .size(250.dp)
                     .applyCubic(horizontalPagerState, page)
             ) {
-//                Image(
-//                    painter = painterResource(id = pictures[page]),
-//                    contentScale = ContentScale.Crop,
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .clickable { Log.d("haha", "haha") },
-//                    contentDescription = null
-//                )
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
                         .data(test[page])
@@ -120,19 +91,17 @@ fun MainScreen(
                         .fillMaxSize()
                         .clickable { Log.d("haha", "haha") }
                 )
-            LaunchedEffect(key1 = horizontalPagerState.currentPage) {
-                stringAllViewModel.save(horizontalPagerState.currentPage)
-            }
-
-
+                LaunchedEffect(key1 = horizontalPagerState.currentPage) {
+                    stringAllViewModel.save(horizontalPagerState.currentPage)
+                }
             }
         }
         LazyColumn(
-            contentPadding = PaddingValues(8.dp),
+            contentPadding = PaddingValues(Sizes.medium),
             verticalArrangement = Arrangement.SpaceAround,
         ) {
             items(categories.value.distinct()) {
-                CategoryItem(category = it, {} )
+                CategoryItem(category = it, {})
             }
 
         }
@@ -145,16 +114,8 @@ fun CategoryItem(category: String, onClick: (category: String) -> Unit) {
     Box(
         modifier = Modifier
             .padding(4.dp)
-//            .clickable {
-//                onClick(category)
-//            }
-//            .size(160.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-//            .paint(
-//                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-//                contentScale = ContentScale.Crop
-//            )
+            .clip(RoundedCornerShape(Sizes.medium))
             .border(1.dp, Color(0xFFEEEEEE)),
         contentAlignment = Alignment.BottomCenter
     ) {
@@ -162,7 +123,7 @@ fun CategoryItem(category: String, onClick: (category: String) -> Unit) {
             text = category,
             fontSize = 18.sp,
             color = Color.Black,
-            modifier = Modifier.padding(0.dp, 20.dp),
+            modifier = Modifier.padding(0.dp, Sizes.extra),
         )
     }
 }

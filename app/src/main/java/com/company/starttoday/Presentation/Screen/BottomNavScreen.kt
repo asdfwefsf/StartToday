@@ -32,7 +32,7 @@ import com.company.starttoday.Presentation.Alarm.setAlarmScreen
 import com.company.starttoday.Presentation.Screen.Screens.BottomNavItem
 import com.company.starttoday.Presentation.Screen.Screens.Screen
 import com.company.starttoday.Presentation.ViewModel.RoutineViewModel
-import com.company.starttoday.Presentation.ViewModel.StringAllViewModel
+import com.company.starttoday.Presentation.ViewModel.ThingOnViewModel
 import com.company.starttoday.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -154,14 +154,14 @@ fun BottomNav() {
         it
         NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
             composable(route = Screen.MainScreen.route) {
-                val viewModel = hiltViewModel<StringAllViewModel>()
+                val viewModel = hiltViewModel<ThingOnViewModel>()
                 val count by viewModel.page.collectAsStateWithLifecycle()
 
-                MainScreen(navController, count)
+                MainScreen(count)
             }
 
             composable(route = Screen.AlarmScreen.route) {
-                val viewModel = hiltViewModel<StringAllViewModel>()
+                val viewModel = hiltViewModel<ThingOnViewModel>()
                 val count by viewModel.page.collectAsStateWithLifecycle()
 
                 AlarmScreen(navController)

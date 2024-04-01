@@ -1,17 +1,17 @@
-package com.company.starttoday.Data.Impl
+package com.company.starttoday.Data.ThingOnData.Impl
 
-import com.company.starttoday.Core.Network.API.StringAPI
+import com.company.starttoday.Core.Network.API.ThingOnAPI
 import com.company.starttoday.Data.ThingOnData.Room.ThingOn
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
-import com.company.starttoday.Repository.GetStringRepository
+import com.company.starttoday.Repository.GetThingOnRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GetStringRepositoryImpl @Inject constructor(
-    private val stringAPI: StringAPI,
+class GetThingOnRepositoryImpl @Inject constructor(
+    private val stringAPI: ThingOnAPI,
     private val dao: ThingOnDao
-) : GetStringRepository {
+) : GetThingOnRepository {
     override suspend fun getString() {
         val result = stringAPI.getCategories()
         val resultBody = result.body() ?: emptyList()

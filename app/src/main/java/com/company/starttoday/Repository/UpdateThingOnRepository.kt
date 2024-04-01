@@ -1,5 +1,5 @@
 package com.company.starttoday.Repository
 
-interface UpdateStringRepository {
+interface UpdateThingOnRepository {
     suspend fun updateString()
 }

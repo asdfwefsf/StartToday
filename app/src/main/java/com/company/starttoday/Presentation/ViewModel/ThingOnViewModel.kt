@@ -2,18 +2,18 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Data.Impl.StringRepositoryImpl
+import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
-import com.company.starttoday.Domain.UseCases.UpdateStringUseCase
+import com.company.starttoday.Domain.ThingOn.UseCases.UpdateThingOnUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StringAllViewModel @Inject constructor(
-    private val useCase: UpdateStringUseCase,
-    private val repository: StringRepositoryImpl,
+class ThingOnViewModel @Inject constructor(
+    private val useCase: UpdateThingOnUseCase,
+    private val repository: UpdateThingOnRepositoryImpl,
     private val counter : ImageCounter,
     private val database: ThingOnDatabase
 

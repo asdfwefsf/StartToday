@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+<!--    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
 
@@ -32,8 +30,8 @@
             tools:node="remove">
         </provider>
 
-        <receiver android:name=".Data.AlarmData.AlarmReceiver"/>
-            <receiver android:name=".Data.AlarmData.AlarmCancelReceiver"/>
+        <receiver android:name=".Presentation.Alarm.AlarmReceiver"/>
+            <receiver android:name=".Presentation.Alarm.AlarmCancelReceiver"/>
 
 
 

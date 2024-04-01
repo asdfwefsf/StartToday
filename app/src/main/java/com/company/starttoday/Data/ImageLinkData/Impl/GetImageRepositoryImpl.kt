@@ -1,4 +1,4 @@
-package com.company.starttoday.Data.Impl
+package com.company.starttoday.Data.ImageLinkData.Impl
 
 import com.company.starttoday.Core.Network.API.ImageLinkAPI
 import com.company.starttoday.Data.ImageLinkData.Room.ImageLink

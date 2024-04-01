@@ -1,7 +1,7 @@
 package com.company.starttoday.DI
 
 import com.company.starttoday.Core.Network.API.ImageLinkAPI
-import com.company.starttoday.Core.Network.API.StringAPI
+import com.company.starttoday.Core.Network.API.ThingOnAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,13 +14,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 object NetworkModule {
 
     @Provides
-    fun provideTodayStringApi() : StringAPI
+    fun provideTodayStringApi() : ThingOnAPI
     {
         return Retrofit.Builder()
             .baseUrl("https://api.jsonbin.io/v3/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(StringAPI::class.java)
+            .create(ThingOnAPI::class.java)
 
     }
 

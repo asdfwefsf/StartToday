@@ -9,8 +9,8 @@ import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.company.starttoday.Domain.UseCases.GetImageUseCase
-import com.company.starttoday.Domain.UseCases.GetStringUseCase
+import com.company.starttoday.Domain.Image.UseCases.GetImageUseCase
+import com.company.starttoday.Domain.ThingOn.UseCases.GetThingOnUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.coroutineScope
@@ -24,7 +24,7 @@ class APIWorkManager @AssistedInject constructor(
 //    private val imageLinkImpl : ImageLinkImpl,
 //    private val stringRepositoryImpl : StringRepositoryImpl,
     private val getImageUseCase: GetImageUseCase,
-    private val getStringUseCase: GetStringUseCase
+    private val getStringUseCase: GetThingOnUseCase
 
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {

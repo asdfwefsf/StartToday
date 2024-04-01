@@ -1,4 +1,4 @@
-package com.company.starttoday.Domain.UseCases
+package com.company.starttoday.Domain.Image.UseCases
 
 import com.company.starttoday.Repository.GetImageRepository
 import javax.inject.Inject

@@ -2,8 +2,7 @@ package com.company.starttoday.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.company.starttoday.Core.Network.API.StringAPI
-import com.company.starttoday.Data.Impl.StringRepositoryImpl
+import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import dagger.Module
@@ -35,17 +34,8 @@ object ThingOnModule {
     @Provides
     @Singleton
     fun provideStringRepoditoryImpl(
-        stringApi : StringAPI,
         dao : ThingOnDao
-    ) : StringRepositoryImpl = StringRepositoryImpl(stringApi , dao)
+    ) : UpdateThingOnRepositoryImpl = UpdateThingOnRepositoryImpl(dao)
 
-//    @Provides
-//    @Singleton
-//    fun provideStringRepositoryImpl(
-//        stringAPI: StringAPI,
-//        dao: ThingOnDao
-//    ): StringRepositoryImpl {
-//        return StringRepositoryImpl(stringAPI, dao)
-//    }
 
 }
