@@ -3,7 +3,7 @@ package com.company.starttoday.Data.ThingOnData.Impl
 import com.company.starttoday.Core.Network.API.ThingOnAPI
 import com.company.starttoday.Data.ThingOnData.Room.ThingOn
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
-import com.company.starttoday.Repository.GetThingOnRepository
+import com.company.starttoday.Domain.ThingOn.Repository.GetThingOnRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

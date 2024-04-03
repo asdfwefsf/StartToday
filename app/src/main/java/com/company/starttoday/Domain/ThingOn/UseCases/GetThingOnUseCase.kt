@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.ThingOn.UseCases
 
-import com.company.starttoday.Repository.GetThingOnRepository
+import com.company.starttoday.Domain.ThingOn.Repository.GetThingOnRepository
 import javax.inject.Inject
 
 class GetThingOnUseCase @Inject constructor(

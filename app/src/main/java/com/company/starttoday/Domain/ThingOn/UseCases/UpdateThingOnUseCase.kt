@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.ThingOn.UseCases
 
-import com.company.starttoday.Repository.UpdateThingOnRepository
+import com.company.starttoday.Domain.ThingOn.Repository.UpdateThingOnRepository
 import javax.inject.Inject
 
 class UpdateThingOnUseCase @Inject constructor (

@@ -3,7 +3,7 @@ package com.company.starttoday.Data.ImageLinkData.Impl
 import com.company.starttoday.Core.Network.API.ImageLinkAPI
 import com.company.starttoday.Data.ImageLinkData.Room.ImageLink
 import com.company.starttoday.Data.ImageLinkData.Room.ImageLinkDao
-import com.company.starttoday.Repository.GetImageRepository
+import com.company.starttoday.Domain.Image.Repository.GetImageRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

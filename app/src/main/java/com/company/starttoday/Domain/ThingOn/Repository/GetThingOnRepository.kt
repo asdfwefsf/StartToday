@@ -1,4 +1,4 @@
-package com.company.starttoday.Repository
+package com.company.starttoday.Domain.ThingOn.Repository
 
 interface GetThingOnRepository {
     suspend fun getString()
