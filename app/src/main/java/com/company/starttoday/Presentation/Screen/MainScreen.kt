@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.company.starttoday.Presentation.ImageLink.ImageLinkViewModel
+import com.company.starttoday.Presentation.Image.ImageLinkViewModel
 import com.company.starttoday.Presentation.ViewModel.ThingOnViewModel
 import com.company.starttoday.Theme.Sizes
 import kotlin.math.absoluteValue
@@ -48,8 +48,10 @@ fun MainScreen(
     count: Int,
 ) {
 
-    val stringAllViewModel: ThingOnViewModel = hiltViewModel()
-    val categories = stringAllViewModel.categories.collectAsState()
+    val thingOnViewModel: ThingOnViewModel = hiltViewModel()
+    val categories = thingOnViewModel.categories.collectAsState()
+
+//    val categories = stringAllViewModel.categories.collectAsState()
 
     val imageLinkViewModel: ImageLinkViewModel = hiltViewModel()
     val imageLinklist = imageLinkViewModel.imageLinks.collectAsState()
@@ -92,7 +94,7 @@ fun MainScreen(
                         .clickable { Log.d("haha", "haha") }
                 )
                 LaunchedEffect(key1 = horizontalPagerState.currentPage) {
-                    stringAllViewModel.save(horizontalPagerState.currentPage)
+                    thingOnViewModel.save(horizontalPagerState.currentPage)
                 }
             }
         }

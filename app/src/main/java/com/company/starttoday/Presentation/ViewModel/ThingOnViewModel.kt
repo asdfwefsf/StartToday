@@ -2,26 +2,26 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Core.WorkManager.APICoroutineWorker
-import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
-import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Domain.ThingOn.UseCases.UpdateThingOnUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ThingOnViewModel @Inject constructor(
-    private val useCase: UpdateThingOnUseCase,
-    private val repository: UpdateThingOnRepositoryImpl,
+    private val updateThingOnUseCase : UpdateThingOnUseCase,
+//    private val repository: UpdateThingOnRepositoryImpl,
     private val counter : ImageCounter,
-    private val database: ThingOnDatabase,
-    private val apiCoroutineWorker : APICoroutineWorker
-
 ) : ViewModel() {
 
-    val categories: StateFlow<List<String>> = repository.categories
+//    val categories: StateFlow<List<String>> = repository.categories
+
+    private val _categoriesState = MutableStateFlow<List<String>>(emptyList())
+    val categories: StateFlow<List<String>> = _categoriesState.asStateFlow()
+
 
     val page = counter.count
 
@@ -29,23 +29,20 @@ class ThingOnViewModel @Inject constructor(
         counter.save(pageNum)
     }
 
-
-//    val thionOnFlow = database.dao.getAll()
-//
-//    fun updateUI() {
-//        database.dao.getAll()
-//    }
     init {
         viewModelScope.launch {
 
-            useCase.updateString()
+//            useCase.updateString()
+            fetchCategories()
+
         }
     }
 
-
-
-
-
+    private suspend fun fetchCategories() = viewModelScope.launch {
+        updateThingOnUseCase().collect { categoriesList ->
+            _categoriesState.value = categoriesList
+        }
+    }
 
 }
 
