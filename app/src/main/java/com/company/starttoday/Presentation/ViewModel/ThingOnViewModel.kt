@@ -19,8 +19,8 @@ class ThingOnViewModel @Inject constructor(
 
 //    val categories: StateFlow<List<String>> = repository.categories
 
-    private val _categoriesState = MutableStateFlow<List<String>>(emptyList())
-    val categories: StateFlow<List<String>> = _categoriesState.asStateFlow()
+    private val _thingOn = MutableStateFlow<List<String>>(emptyList())
+    val thingOn: StateFlow<List<String>> = _thingOn.asStateFlow()
 
 
     val page = counter.count
@@ -33,14 +33,14 @@ class ThingOnViewModel @Inject constructor(
         viewModelScope.launch {
 
 //            useCase.updateString()
-            fetchCategories()
+            updateThingOn()
 
         }
     }
 
-    private suspend fun fetchCategories() = viewModelScope.launch {
+    private suspend fun updateThingOn() = viewModelScope.launch {
         updateThingOnUseCase().collect { categoriesList ->
-            _categoriesState.value = categoriesList
+            _thingOn.value = categoriesList
         }
     }
 

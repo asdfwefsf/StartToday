@@ -24,7 +24,7 @@ class UpdateThingOnRepositoryImpl @Inject constructor(
 //        }
 //    }
 
-    override suspend fun updateString(): Flow<List<String>> {
+    override suspend fun updateThingOn(): Flow<List<String>> {
         return dao.getAll().map { entities ->
             entities.map { it.thingOn }
         }

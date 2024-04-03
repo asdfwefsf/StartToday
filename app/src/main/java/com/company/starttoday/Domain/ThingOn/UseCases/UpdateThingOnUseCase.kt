@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UpdateThingOnUseCase @Inject constructor (
-    private val stringRepository : UpdateThingOnRepository
+    private val updateThingOnRepository : UpdateThingOnRepository
 ) {
     suspend operator fun invoke(): Flow<List<String>> {
-        return stringRepository.updateString()
+        return updateThingOnRepository.updateThingOn()
     }
 //    suspend fun updateString() {
 //        stringRepository.updateString()

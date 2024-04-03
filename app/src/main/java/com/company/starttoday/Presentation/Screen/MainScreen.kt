@@ -49,7 +49,7 @@ fun MainScreen(
 ) {
 
     val thingOnViewModel: ThingOnViewModel = hiltViewModel()
-    val categories = thingOnViewModel.categories.collectAsState()
+    val categories = thingOnViewModel.thingOn.collectAsState()
 
 //    val categories = stringAllViewModel.categories.collectAsState()
 
