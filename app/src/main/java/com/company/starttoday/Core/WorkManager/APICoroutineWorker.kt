@@ -71,6 +71,7 @@ fun getInfoWork(context: Context) {
     WorkManager.getInstance(context).enqueue(dailyWorkRequest)
 }
 
+
 fun getInfoNowWork(context: Context) {
     val constraints = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.CONNECTED)
