@@ -17,12 +17,12 @@ import kotlinx.coroutines.coroutineScope
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
+
+
 @HiltWorker
-class APIWorkManager @AssistedInject constructor(
+class APICoroutineWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
-//    private val imageLinkImpl : ImageLinkImpl,
-//    private val stringRepositoryImpl : StringRepositoryImpl,
     private val getImageUseCase: GetImageUseCase,
     private val getStringUseCase: GetThingOnUseCase
 
@@ -30,51 +30,54 @@ class APIWorkManager @AssistedInject constructor(
     override suspend fun doWork(): Result = coroutineScope {
         try {
             getImageUseCase.getImage()
-//            stringRepositoryImpl.getCategories()
             getStringUseCase.getString()
             Log.d("karina" , "karinaTt")
-//            return Result.success()
         } catch (e: Exception) {
-            Log.d("karina" , "karinaF")
-
-//            return Result.retry()
+            Result.failure()
         }
         Result.success()
     }
 }
 
-fun scheduleFetchImageLinkWork(context: Context) {
+fun getInfoWork(context: Context) {
     val constraints = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.CONNECTED)
         .build()
+    // 작업 요청에 대한 제한 조건 설정 : 여기서는 네트워크가 연결되어야 한다는 조건
 
     val currentDate = Calendar.getInstance()
 
     val dueDate = Calendar.getInstance().apply {
+        // 아래에서 서버에서 데이터 가져오는 날짜 , 시간 설정
         set(Calendar.HOUR_OF_DAY, 3)
         set(Calendar.MINUTE, 45
         )
         set(Calendar.SECOND, 0)
-        if (before(currentDate)) {
+        if (before(currentDate)) { // 하루 지나면 오늘 + 1
             add(Calendar.DATE, 1)
         }
     }
 
+    // 바로 실행 말고 현재 시간과 예약 시간의 차이가 흐로고 작업이 실행
     val timeDiff = dueDate.timeInMillis - currentDate.timeInMillis
-    val dailyWorkRequest = OneTimeWorkRequestBuilder<APIWorkManager>()
+
+    // 한번만 사용하는 WorkRequest 생성
+    val dailyWorkRequest = OneTimeWorkRequestBuilder<APICoroutineWorker>()
         .setInitialDelay(timeDiff, TimeUnit.MILLISECONDS)
         .setConstraints(constraints)
         .build()
 
+    // WorkManager에 작업 요청을 예약
     WorkManager.getInstance(context).enqueue(dailyWorkRequest)
 }
 
-fun scheduleImmediateWork(context: Context) {
+fun getInfoNowWork(context: Context) {
     val constraints = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.CONNECTED)
         .build()
 
-    val immediateWorkRequest = OneTimeWorkRequestBuilder<APIWorkManager>()
+    // 빨리 해야되서 지연시간 X
+    val immediateWorkRequest = OneTimeWorkRequestBuilder<APICoroutineWorker>()
         .setConstraints(constraints)
         .build()
 

@@ -2,6 +2,7 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.company.starttoday.Core.WorkManager.APICoroutineWorker
 import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Domain.ThingOn.UseCases.UpdateThingOnUseCase
@@ -15,7 +16,8 @@ class ThingOnViewModel @Inject constructor(
     private val useCase: UpdateThingOnUseCase,
     private val repository: UpdateThingOnRepositoryImpl,
     private val counter : ImageCounter,
-    private val database: ThingOnDatabase
+    private val database: ThingOnDatabase,
+    private val apiCoroutineWorker : APICoroutineWorker
 
 ) : ViewModel() {
 
@@ -35,6 +37,7 @@ class ThingOnViewModel @Inject constructor(
 //    }
     init {
         viewModelScope.launch {
+
             useCase.updateString()
         }
     }

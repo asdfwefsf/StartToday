@@ -4,11 +4,14 @@ import android.Manifest
 import android.animation.ObjectAnimator
 import android.app.AlarmManager
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.animation.OvershootInterpolator
 import androidx.activity.ComponentActivity
@@ -22,8 +25,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Core.WorkManager.scheduleFetchImageLinkWork
-import com.company.starttoday.Core.WorkManager.scheduleImmediateWork
+import com.company.starttoday.Core.WorkManager.getInfoNowWork
+import com.company.starttoday.Core.WorkManager.getInfoWork
 import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Presentation.Screen.BottomNav
@@ -35,9 +38,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 class splashScreen : ViewModel() {
     private val _isReady = MutableStateFlow(false)
     val isReady = _isReady.asStateFlow()
+
     init {
         viewModelScope.launch {
             delay(10L)
@@ -46,14 +51,47 @@ class splashScreen : ViewModel() {
     }
 }
 
+class AlarmPermissionReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent?.action == AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED) {
+
+Log.d("sibal" , intent.action.toString())
+Log.d("sibal" , "sibal")
+            val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+            if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
+                // 사용자에게 권한 허용을 요청하는 다이얼로그를 표시
+                showPermissionRequestDialog(context)
+            }
+        }
+    }
+
+    private fun showPermissionRequestDialog(context: Context) {
+        // 사용자에게 권한 허용을 요청하는 다이얼로그 표시
+        AlertDialog.Builder(context).apply {
+            setTitle("권한 필요")
+            setMessage("알람을 정확하게 설정하려면 권한이 필요합니다. 설정 페이지로 이동하시겠습니까?")
+            setPositiveButton("네") { dialog, which ->
+                // 사용자를 설정 페이지로 안내하는 인텐트 실행
+                val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                context.startActivity(intent)
+            }
+            setNegativeButton("아니오", null)
+            show()
+        }
+    }
+}
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val splashViewModel by viewModels<splashScreen>()
     private lateinit var alarmManager: AlarmManager
 
-    @Inject lateinit var thingonDB : ThingOnDatabase
-    @Inject lateinit var repository: UpdateThingOnRepositoryImpl
+    @Inject
+    lateinit var thingonDB: ThingOnDatabase
+
+    @Inject
+    lateinit var repository: UpdateThingOnRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        installSplashScreen()
@@ -94,7 +132,7 @@ class MainActivity : ComponentActivity() {
                 zoomY.start()
             }
         }
-        scheduleFetchImageLinkWork(this)
+        getInfoWork(this)
         setContent {
             StartTodayTheme {
 
@@ -109,10 +147,25 @@ class MainActivity : ComponentActivity() {
                 }
 
 
-
             }
         }
     }
+
+    fun askPermissionForExactAlarm(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if (!alarmManager.canScheduleExactAlarms()) {
+            Log.d("sibal1" , "sibal1")
+            Log.d("sibal1" , "sibal1")
+            val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+            context.startActivity(intent)
+
+        }
+        Log.d("sibal2" , intent.action.toString())
+        Log.d("sibal2" , "sibal")
+
+    }
+
+
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val allPermissionsGranted = permissions.all { it.value }
@@ -136,7 +189,8 @@ class MainActivity : ComponentActivity() {
                     requestPermissionLauncher.launch(
                         arrayOf(
                             Manifest.permission.POST_NOTIFICATIONS,
-                        )
+
+                            )
                     )
                 }
 
@@ -150,22 +204,22 @@ class MainActivity : ComponentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permissions = arrayOf(
                 Manifest.permission.POST_NOTIFICATIONS,
-                Manifest.permission.SCHEDULE_EXACT_ALARM
             )
 
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS,
                 ) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.SCHEDULE_EXACT_ALARM,
-                ) ==
                 PackageManager.PERMISSION_GRANTED
+//                &&
+//                ContextCompat.checkSelfPermission(
+//                    this,
+//                    Manifest.permission.USE_EXACT_ALARM,
+//                ) ==
+//                PackageManager.PERMISSION_GRANTED
             ) {
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) ||
-                shouldShowRequestPermissionRationale(Manifest.permission.SCHEDULE_EXACT_ALARM)
+                shouldShowRequestPermissionRationale(Manifest.permission.USE_EXACT_ALARM)
             ) {
                 showPermissionRationalDialog()
             } else {
@@ -175,30 +229,18 @@ class MainActivity : ComponentActivity() {
     }
 
 
-    fun askPermissionForExactAlarm(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            if (!alarmManager.canScheduleExactAlarms()) {
-                // 권한이 없으면 사용자에게 권한 요청
-                val intent = Intent(AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED)
-                context.startActivity(intent)
-            } else {
-                // 권한이 있으면 다음 단계로 (여기서는 예시로 비워둠)
-            }
-        }
-    }
-
     // 앱 최초 다운 최초 실행
     fun checkFirstRun(context: Context): Boolean {
         val prefs = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         val isFirstRun = prefs.getBoolean("isFirstRun", true)
 
         if (isFirstRun) {
-            scheduleImmediateWork(context)
+            getInfoNowWork(context)
             prefs.edit().putBoolean("isFirstRun", false).apply()
         }
 
         return isFirstRun
     }
+
 
 }

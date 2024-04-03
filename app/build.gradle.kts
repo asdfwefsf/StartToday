@@ -11,9 +11,9 @@ android {
 
     defaultConfig {
         applicationId = "com.company.starttoday"
-        minSdk = 30
+        minSdk = 31
         targetSdk = 34
-        versionCode = 5
+        versionCode = 7
         versionName = "1.0"
 
 
