@@ -31,6 +31,8 @@ class ImageLinkViewModel @Inject constructor(
     }
 
 
+
+
     val page = counter.count
     fun save(pageNum : Int) {
         counter.save(pageNum)
