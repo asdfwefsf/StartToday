@@ -1,7 +1,7 @@
 package com.company.starttoday.DI
 
 import com.company.starttoday.Data.ImageLinkData.Impl.GetImageRepositoryImpl
-import com.company.starttoday.Data.ImageLinkData.UpdateImageRepositoryImpl
+import com.company.starttoday.Data.ImageLinkData.Impl.UpdateImageRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Impl.GetThingOnRepositoryImpl
 import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
 import com.company.starttoday.Domain.Image.Repository.GetImageRepository

@@ -23,17 +23,12 @@ class ThingOnViewModel @Inject constructor(
     private val _thingOn = MutableStateFlow<List<String>>(emptyList())
     val thingOn: StateFlow<List<String>> = _thingOn.asStateFlow()
     private suspend fun updateThingOn() = viewModelScope.launch {
-        updateThingOnUseCase().collect { categoriesList ->
-            _thingOn.value = categoriesList
+        updateThingOnUseCase().collect { thingOnList ->
+            _thingOn.value = thingOnList
         }
     }
 
     // 이미지 관련 카운터 : ThingOnViewModel -> ImageLinkViewModel 이동
-//    val page = counter.count
-//    fun save(pageNum : Int) {
-//        counter.save(pageNum)
-//    }
-
     init {
         viewModelScope.launch {
             updateThingOn()

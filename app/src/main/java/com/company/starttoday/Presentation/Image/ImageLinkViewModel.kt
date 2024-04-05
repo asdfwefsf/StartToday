@@ -9,6 +9,7 @@ import com.company.starttoday.Presentation.ViewModel.ImageCounter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,11 +22,14 @@ class ImageLinkViewModel @Inject constructor(
 
     ) : ViewModel() {
 
-    val imageLinkFlow = database.dao.getImageLink()
-
     private val _imageLinks = MutableStateFlow<List<String>>(emptyList())
+    val imageLinks : StateFlow<List<String>> = _imageLinks.asStateFlow()
+    private suspend fun updateImage() = viewModelScope.launch {
+        updateImageUseCase().collect { imageList ->
+            _imageLinks.value = imageList
+        }
+    }
 
-    val imageLinks : StateFlow<List<String>> = repository.imageLinks
 
     val page = counter.count
     fun save(pageNum : Int) {
@@ -45,14 +49,7 @@ class ImageLinkViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-
-//            repository.getImageLink()
-
-            repository.updateUi()
-
-
-
-
+            updateImage()
         }
     }
 }
