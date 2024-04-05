@@ -33,7 +33,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.company.starttoday.Data.RoutineData.RoutineState
 import com.company.starttoday.Data.RoutineData.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
@@ -43,10 +42,8 @@ import com.company.starttoday.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RoutineScreen(
-    navController: NavController,
     state: RoutineState,
     onEvent: (RoutineEvent) -> Unit
-
 ) {
 
     Scaffold(
@@ -69,13 +66,6 @@ fun RoutineScreen(
                         .clip(CircleShape)
 
                 )
-
-//                Icon(
-//                    imageVector = Icons.Default.Add,
-//                    contentDescription = "Add contact",
-//                    tint = Color.Magenta
-//
-//                )
             }
         },
         modifier = Modifier.background(MaterialTheme.colorScheme.background)

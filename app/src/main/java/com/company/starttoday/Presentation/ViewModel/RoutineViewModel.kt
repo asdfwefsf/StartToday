@@ -94,11 +94,6 @@ class RoutineViewModel @Inject constructor(
                     routineName = event.routineName
                 ) }
             }
-//            is RoutineEvent.SetPhoneNumber -> {
-//                _state.update { it.copy(
-//                    phoneNumber = event.phoneNumber
-//                ) }
-//            }
 
             RoutineEvent.ShowDialog -> {
                 _state.update { it.copy(
@@ -112,15 +107,5 @@ class RoutineViewModel @Inject constructor(
             else -> {}
         }
     }
-
-
-
-
-
-
-
-
-
-
 }
 
