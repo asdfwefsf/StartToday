@@ -1,4 +1,4 @@
-package com.company.starttoday.Presentation.Screen
+package com.company.starttoday.Presentation.ThingOn_Image.Screens
 
 import android.util.Log
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -36,8 +36,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.company.starttoday.Presentation.Image.ImageLinkViewModel
-import com.company.starttoday.Presentation.ViewModel.ThingOnViewModel
+import com.company.starttoday.Presentation.ThingOn_Image.ViewModel.ImageLinkViewModel
+import com.company.starttoday.Presentation.ThingOn_Image.ViewModel.ThingOnViewModel
 import com.company.starttoday.Theme.Sizes
 import kotlin.math.absoluteValue
 

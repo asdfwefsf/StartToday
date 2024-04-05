@@ -29,9 +29,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.company.starttoday.Presentation.Alarm.AlarmScreen
 import com.company.starttoday.Presentation.Alarm.setAlarmScreen
-import com.company.starttoday.Presentation.Image.ImageLinkViewModel
+import com.company.starttoday.Presentation.ThingOn_Image.ViewModel.ImageLinkViewModel
 import com.company.starttoday.Presentation.Screen.Screens.BottomNavItem
 import com.company.starttoday.Presentation.Screen.Screens.Screen
+import com.company.starttoday.Presentation.ThingOn_Image.Screens.MainScreen
 import com.company.starttoday.Presentation.ViewModel.RoutineViewModel
 import com.company.starttoday.R
 

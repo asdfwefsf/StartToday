@@ -1,4 +1,4 @@
-package com.company.starttoday.Presentation.ViewModel
+package com.company.starttoday.Presentation.ThingOn_Image.ViewModel
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
