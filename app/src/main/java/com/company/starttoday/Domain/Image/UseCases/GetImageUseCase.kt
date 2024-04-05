@@ -4,9 +4,9 @@ import com.company.starttoday.Domain.Image.Repository.GetImageRepository
 import javax.inject.Inject
 
 class GetImageUseCase @Inject constructor(
-    private val repository: GetImageRepository
+    private val getImageRepository: GetImageRepository
 ) {
     suspend operator fun invoke() {
-        repository.getImage()
+        getImageRepository.getImage()
     }
 }

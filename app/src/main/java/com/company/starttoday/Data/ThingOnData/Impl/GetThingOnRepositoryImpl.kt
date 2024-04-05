@@ -17,13 +17,9 @@ class GetThingOnRepositoryImpl @Inject constructor(
         val resultBody = result.body() ?: emptyList()
 
         if (result.isSuccessful && result.body() != null) {
-//            _categories.emit(result.body()!!)
-
             withContext(Dispatchers.IO) {
                 resultBody.forEach {
-                    // parameter로 Thin
                     dao.upsertStrings(ThingOn(thingOn = it))
-
                 }
             }
 

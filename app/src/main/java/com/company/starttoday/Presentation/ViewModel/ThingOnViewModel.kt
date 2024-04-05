@@ -13,11 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ThingOnViewModel @Inject constructor(
     private val updateThingOnUseCase : UpdateThingOnUseCase,
-//    private val repository: UpdateThingOnRepositoryImpl,
-//    private val counter : ImageCounter,
 ) : ViewModel() {
-
-//    val categories: StateFlow<List<String>> = repository.categories
 
     // ThingOnUpdate
     private val _thingOn = MutableStateFlow<List<String>>(emptyList())
@@ -34,8 +30,5 @@ class ThingOnViewModel @Inject constructor(
             updateThingOn()
         }
     }
-
-
-
 }
 

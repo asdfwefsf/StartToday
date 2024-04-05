@@ -24,13 +24,13 @@ class GetAPICoroutineWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val getImageUseCase: GetImageUseCase,
-    private val getStringUseCase: GetThingOnUseCase
+    private val getThingOnUseCase: GetThingOnUseCase
 
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
             getImageUseCase()
-            getStringUseCase()
+            getThingOnUseCase()
             Log.d("karina" , "karinaT")
         } catch (e: Exception) {
             Result.failure()

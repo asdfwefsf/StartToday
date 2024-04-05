@@ -10,10 +10,4 @@ class UpdateThingOnUseCase @Inject constructor (
     suspend operator fun invoke(): Flow<List<String>> {
         return updateThingOnRepository.updateThingOn()
     }
-//    suspend fun updateString() {
-//        stringRepository.updateString()
-//    }
-
-
-
 }
