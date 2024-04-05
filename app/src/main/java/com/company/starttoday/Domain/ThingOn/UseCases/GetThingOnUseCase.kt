@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetThingOnUseCase @Inject constructor(
     private val getStringRepository : GetThingOnRepository
 ) {
-    suspend fun getString() {
+    suspend operator fun invoke() {
         getStringRepository.getString()
     }
 }

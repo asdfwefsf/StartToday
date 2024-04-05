@@ -29,8 +29,8 @@ class APICoroutineWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            getImageUseCase.getImage()
-            getStringUseCase.getString()
+            getImageUseCase()
+            getStringUseCase()
             Log.d("karina" , "karinaTt")
         } catch (e: Exception) {
             Result.failure()

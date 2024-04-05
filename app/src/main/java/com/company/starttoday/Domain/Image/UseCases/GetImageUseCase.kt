@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetImageUseCase @Inject constructor(
     private val repository: GetImageRepository
 ) {
-    suspend fun getImage() {
+    suspend operator fun invoke() {
         repository.getImage()
     }
 }
