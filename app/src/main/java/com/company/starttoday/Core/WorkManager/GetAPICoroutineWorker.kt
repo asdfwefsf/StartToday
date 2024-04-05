@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 
 @HiltWorker
-class APICoroutineWorker @AssistedInject constructor(
+class GetAPICoroutineWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted workerParams: WorkerParameters,
     private val getImageUseCase: GetImageUseCase,
@@ -31,9 +31,11 @@ class APICoroutineWorker @AssistedInject constructor(
         try {
             getImageUseCase()
             getStringUseCase()
-            Log.d("karina" , "karinaTt")
+            Log.d("karina" , "karinaT")
         } catch (e: Exception) {
             Result.failure()
+            Log.d("karina" , "karinaF")
+
         }
         Result.success()
     }
@@ -49,8 +51,8 @@ fun getInfoWork(context: Context) {
 
     val dueDate = Calendar.getInstance().apply {
         // 아래에서 서버에서 데이터 가져오는 날짜 , 시간 설정
-        set(Calendar.HOUR_OF_DAY, 3)
-        set(Calendar.MINUTE, 45
+        set(Calendar.HOUR_OF_DAY, 19)
+        set(Calendar.MINUTE, 49
         )
         set(Calendar.SECOND, 0)
         if (before(currentDate)) { // 하루 지나면 오늘 + 1
@@ -62,7 +64,7 @@ fun getInfoWork(context: Context) {
     val timeDiff = dueDate.timeInMillis - currentDate.timeInMillis
 
     // 한번만 사용하는 WorkRequest 생성
-    val dailyWorkRequest = OneTimeWorkRequestBuilder<APICoroutineWorker>()
+    val dailyWorkRequest = OneTimeWorkRequestBuilder<GetAPICoroutineWorker>()
         .setInitialDelay(timeDiff, TimeUnit.MILLISECONDS)
         .setConstraints(constraints)
         .build()
@@ -78,7 +80,7 @@ fun getInfoNowWork(context: Context) {
         .build()
 
     // 빨리 해야되서 지연시간 X
-    val immediateWorkRequest = OneTimeWorkRequestBuilder<APICoroutineWorker>()
+    val immediateWorkRequest = OneTimeWorkRequestBuilder<GetAPICoroutineWorker>()
         .setConstraints(constraints)
         .build()
 
