@@ -29,10 +29,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.company.starttoday.Presentation.Alarm.AlarmScreen
 import com.company.starttoday.Presentation.Alarm.setAlarmScreen
+import com.company.starttoday.Presentation.Image.ImageLinkViewModel
 import com.company.starttoday.Presentation.Screen.Screens.BottomNavItem
 import com.company.starttoday.Presentation.Screen.Screens.Screen
 import com.company.starttoday.Presentation.ViewModel.RoutineViewModel
-import com.company.starttoday.Presentation.ViewModel.ThingOnViewModel
 import com.company.starttoday.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -154,15 +154,15 @@ fun BottomNav() {
         it
         NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
             composable(route = Screen.MainScreen.route) {
-                val viewModel = hiltViewModel<ThingOnViewModel>()
+                val viewModel = hiltViewModel<ImageLinkViewModel>()
                 val count by viewModel.page.collectAsStateWithLifecycle()
 
                 MainScreen(count)
             }
 
             composable(route = Screen.AlarmScreen.route) {
-                val viewModel = hiltViewModel<ThingOnViewModel>()
-                val count by viewModel.page.collectAsStateWithLifecycle()
+//                val viewModel = hiltViewModel<ThingOnViewModel>()
+//                val count by viewModel.page.collectAsStateWithLifecycle()
 
                 AlarmScreen(navController)
             }

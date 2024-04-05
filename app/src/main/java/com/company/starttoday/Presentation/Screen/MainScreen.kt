@@ -94,7 +94,7 @@ fun MainScreen(
                         .clickable { Log.d("haha", "haha") }
                 )
                 LaunchedEffect(key1 = horizontalPagerState.currentPage) {
-                    thingOnViewModel.save(horizontalPagerState.currentPage)
+                    imageLinkViewModel.save(horizontalPagerState.currentPage)
                 }
             }
         }

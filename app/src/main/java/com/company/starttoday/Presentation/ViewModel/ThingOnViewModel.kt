@@ -14,35 +14,33 @@ import javax.inject.Inject
 class ThingOnViewModel @Inject constructor(
     private val updateThingOnUseCase : UpdateThingOnUseCase,
 //    private val repository: UpdateThingOnRepositoryImpl,
-    private val counter : ImageCounter,
+//    private val counter : ImageCounter,
 ) : ViewModel() {
 
 //    val categories: StateFlow<List<String>> = repository.categories
 
+    // ThingOnUpdate
     private val _thingOn = MutableStateFlow<List<String>>(emptyList())
     val thingOn: StateFlow<List<String>> = _thingOn.asStateFlow()
-
-
-    val page = counter.count
-
-    fun save(pageNum : Int) {
-        counter.save(pageNum)
-    }
-
-    init {
-        viewModelScope.launch {
-
-//            useCase.updateString()
-            updateThingOn()
-
-        }
-    }
-
     private suspend fun updateThingOn() = viewModelScope.launch {
         updateThingOnUseCase().collect { categoriesList ->
             _thingOn.value = categoriesList
         }
     }
+
+    // 이미지 관련 카운터 : ThingOnViewModel -> ImageLinkViewModel 이동
+//    val page = counter.count
+//    fun save(pageNum : Int) {
+//        counter.save(pageNum)
+//    }
+
+    init {
+        viewModelScope.launch {
+            updateThingOn()
+        }
+    }
+
+
 
 }
 

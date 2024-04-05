@@ -10,23 +10,13 @@ import javax.inject.Inject
 class UpdateThingOnRepositoryImpl @Inject constructor(
     private val dao: ThingOnDao
 ) : UpdateThingOnRepository {
-
-//    private val _categories = MutableStateFlow<List<String>>(emptyList())
-//
-//    val categories: StateFlow<List<String>>
-//        get() = _categories
-
-//    override suspend fun updateString(): Flow<List<String>> {
-//        dao.getAll().collect {
-//            _categories.value = it.map {
-//                it.thingOn
-//            }
-//        }
-//    }
-
     override suspend fun updateThingOn(): Flow<List<String>> {
         return dao.getAll().map { entities ->
-            entities.map { it.thingOn }
+            // List<String> 순회하면서 각각의 thingOn만 리스팅한 Flow 반환.
+            // Flow로 반환하니까 실시간 업데이트 가능.
+            entities.map {
+                it.thingOn
+            }
         }
     }
 
