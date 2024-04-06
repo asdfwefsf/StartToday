@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Routine.UseCases
 
-import com.company.starttoday.Data.RoutineData.Room.Routine
+import com.company.starttoday.data.RoutineData.Room.Routine
 import com.company.starttoday.Domain.Routine.Model.RoutineType
 import com.company.starttoday.Domain.Routine.Repository.SetRoutineTimeRepository
 import kotlinx.coroutines.flow.Flow

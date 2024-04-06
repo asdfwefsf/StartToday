@@ -2,13 +2,15 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Data.RoutineData.Room.Routine
-import com.company.starttoday.Data.RoutineData.Room.RoutineDao
 import com.company.starttoday.Domain.Routine.Entity.RoutineState
+import com.company.starttoday.Domain.Routine.Model.RoutineDomain
 import com.company.starttoday.Domain.Routine.Model.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
+import com.company.starttoday.Domain.Routine.UseCases.SaveRoutineUseCase
 import com.company.starttoday.Domain.Routine.UseCases.SetRoutineTimeUseCase
+import com.company.starttoday.data.RoutineData.Room.RoutineDao
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -21,27 +23,21 @@ import javax.inject.Inject
 @HiltViewModel
 class RoutineViewModel @Inject constructor(
     private val dao : RoutineDao,
-    private val setRoutineTimeUseCase: SetRoutineTimeUseCase
+    private val setRoutineTimeUseCase: SetRoutineTimeUseCase,
+    private val saveRoutineTimeUseCase : SaveRoutineUseCase
 ) : ViewModel() {
 
     private val _routineTimeType = MutableStateFlow(RoutineType.TODAY)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private val _contacts = _routineTimeType
 
         .flatMapLatest { _routineTimeType ->
-//            when(sortType) {
-//                RoutineType.TODAY -> dao.getRotuineTimeToday("일간")
-//                RoutineType.WEEK -> dao.getRotuineTimeToday("주간")
-//                RoutineType.MONTH -> dao.getRotuineTimeToday("월간")
-//                RoutineType.YEAR -> dao.getRotuineTimeToday("연간")
-//
-//            }
             setRoutineTimeUseCase(_routineTimeType)
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val _state = MutableStateFlow(RoutineState())
-
 
     val state = combine(_state, _routineTimeType, _contacts) { state, sortType, contacts ->
         state.copy(
@@ -72,13 +68,15 @@ class RoutineViewModel @Inject constructor(
                     return
                 }
 
-                val routine = Routine(
+                val routine = RoutineDomain(
                     routineTime = routineTime,
                     routineName = routineName,
                 )
                 viewModelScope.launch {
-                    dao.upsertRoutine(routine)
+//                    dao.upsertRoutine(routine)
+                    saveRoutineTimeUseCase(routine)
                 }
+
                 _state.update { it.copy(
                     isAddingContact = false,
                     routineTime = "",

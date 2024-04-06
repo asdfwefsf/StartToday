@@ -2,8 +2,8 @@ package com.company.starttoday.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.company.starttoday.Data.AlarmData.Room.AlarmDao
-import com.company.starttoday.Data.AlarmData.Room.AlarmDatabase
+import com.company.starttoday.data.AlarmData.Room.AlarmDao
+import com.company.starttoday.data.AlarmData.Room.AlarmDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

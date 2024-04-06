@@ -27,8 +27,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Core.WorkManager.getInfoNowWork
 import com.company.starttoday.Core.WorkManager.getInfoWork
-import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
-import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
+import com.company.starttoday.data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
+import com.company.starttoday.data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Presentation.Screen.BottomNav
 import com.company.starttoday.Theme.StartTodayTheme
 import dagger.hilt.android.AndroidEntryPoint

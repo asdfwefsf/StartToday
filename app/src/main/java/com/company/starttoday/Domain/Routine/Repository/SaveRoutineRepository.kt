@@ -1,7 +1,8 @@
 package com.company.starttoday.Domain.Routine.Repository
 
-import com.company.starttoday.Domain.Routine.Entity.Routine
+import com.company.starttoday.Domain.Routine.Model.RoutineDomain
+
 
 interface SaveRoutineRepository {
-    suspend fun saveRoutine(routine : Routine)
+    suspend fun saveRoutine(routineDomain : RoutineDomain)
 }

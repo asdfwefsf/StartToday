@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.company.starttoday.Data.AlarmData.AndroidAlarmScheduler
+import com.company.starttoday.data.AlarmData.AndroidAlarmScheduler
 import com.company.starttoday.Domain.Alarm.Entity.AlarmItem
 import com.company.starttoday.R
 import com.company.starttoday.Theme.Sizes

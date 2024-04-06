@@ -10,7 +10,7 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.company.starttoday.Data.AlarmData.MediaPlayerManager
+import com.company.starttoday.data.AlarmData.MediaPlayerManager
 import com.company.starttoday.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

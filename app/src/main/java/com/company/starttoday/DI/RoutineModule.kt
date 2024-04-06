@@ -2,8 +2,8 @@ package com.company.starttoday.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.company.starttoday.Data.RoutineData.Room.RoutineDao
-import com.company.starttoday.Data.RoutineData.Room.RoutineDatabase
+import com.company.starttoday.data.RoutineData.Room.RoutineDao
+import com.company.starttoday.data.RoutineData.Room.RoutineDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Routine.Repository
 
-import com.company.starttoday.Data.RoutineData.Room.Routine
+import com.company.starttoday.data.RoutineData.Room.Routine
 import com.company.starttoday.Domain.Routine.Model.RoutineType
 import kotlinx.coroutines.flow.Flow
 

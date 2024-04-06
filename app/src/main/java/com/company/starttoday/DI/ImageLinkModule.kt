@@ -2,8 +2,8 @@ package com.company.starttoday.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.company.starttoday.Data.ImageLinkData.Room.ImageLinkDao
-import com.company.starttoday.Data.ImageLinkData.Room.ImageLinkDatabase
+import com.company.starttoday.data.ImageLinkData.Room.ImageLinkDao
+import com.company.starttoday.data.ImageLinkData.Room.ImageLinkDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,9 +2,9 @@ package com.company.starttoday.DI
 
 import android.content.Context
 import androidx.room.Room
-import com.company.starttoday.Data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
-import com.company.starttoday.Data.ThingOnData.Room.ThingOnDao
-import com.company.starttoday.Data.ThingOnData.Room.ThingOnDatabase
+import com.company.starttoday.data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
+import com.company.starttoday.data.ThingOnData.Room.ThingOnDao
+import com.company.starttoday.data.ThingOnData.Room.ThingOnDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

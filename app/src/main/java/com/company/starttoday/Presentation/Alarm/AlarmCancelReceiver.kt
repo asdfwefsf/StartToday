@@ -4,7 +4,7 @@ import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.company.starttoday.Data.AlarmData.MediaPlayerManager
+import com.company.starttoday.data.AlarmData.MediaPlayerManager
 
 class AlarmCancelReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
