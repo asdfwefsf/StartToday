@@ -1,7 +1,7 @@
 package com.company.starttoday.Domain.Routine
 
 import com.company.starttoday.Data.RoutineData.Room.Routine
-import com.company.starttoday.Data.RoutineData.RoutineType
+import com.company.starttoday.Domain.Routine.Model.RoutineType
 
 sealed interface RoutineEvent {
     object SaveRoutine : RoutineEvent
@@ -14,3 +14,7 @@ sealed interface RoutineEvent {
     data class DeleteRoutine(val routine : Routine): RoutineEvent
 
 }
+
+
+
+

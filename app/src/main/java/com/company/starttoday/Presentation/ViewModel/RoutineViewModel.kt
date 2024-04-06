@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Data.RoutineData.Room.Routine
 import com.company.starttoday.Data.RoutineData.Room.RoutineDao
-import com.company.starttoday.Data.RoutineData.RoutineState
-import com.company.starttoday.Data.RoutineData.RoutineType
+import com.company.starttoday.Domain.Routine.Entity.RoutineState
+import com.company.starttoday.Domain.Routine.Model.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
+import com.company.starttoday.Domain.Routine.UseCases.SetRoutineTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,29 +20,30 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoutineViewModel @Inject constructor(
-    private val dao : RoutineDao
+    private val dao : RoutineDao,
+    private val setRoutineTimeUseCase: SetRoutineTimeUseCase
 ) : ViewModel() {
 
-    private val _sortType = MutableStateFlow(RoutineType.TODAY)
+    private val _routineTimeType = MutableStateFlow(RoutineType.TODAY)
 
-    private val _contacts = _sortType
+    private val _contacts = _routineTimeType
 
-        .flatMapLatest { sortType ->
-            when(sortType) {
-                RoutineType.TODAY -> dao.getRotuineTimeToday("일간")
-                RoutineType.WEEK -> dao.getRotuineTimeToday("주간")
-                RoutineType.MONTH -> dao.getRotuineTimeToday("월간")
-                RoutineType.YEAR -> dao.getRotuineTimeToday("연간")
-                else -> throw IllegalArgumentException("Unknown SortType")
-
-            }
+        .flatMapLatest { _routineTimeType ->
+//            when(sortType) {
+//                RoutineType.TODAY -> dao.getRotuineTimeToday("일간")
+//                RoutineType.WEEK -> dao.getRotuineTimeToday("주간")
+//                RoutineType.MONTH -> dao.getRotuineTimeToday("월간")
+//                RoutineType.YEAR -> dao.getRotuineTimeToday("연간")
+//
+//            }
+            setRoutineTimeUseCase(_routineTimeType)
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val _state = MutableStateFlow(RoutineState())
 
 
-    val state = combine(_state, _sortType, _contacts) { state, sortType, contacts ->
+    val state = combine(_state, _routineTimeType, _contacts) { state, sortType, contacts ->
         state.copy(
             routines = contacts,
             sortType = sortType.typeName
@@ -101,7 +103,7 @@ class RoutineViewModel @Inject constructor(
                 ) }
             }
             is RoutineEvent.RoutineTimeType -> {
-                _sortType.value = event.routineType
+                _routineTimeType.value = event.routineType
             }
 
             else -> {}
