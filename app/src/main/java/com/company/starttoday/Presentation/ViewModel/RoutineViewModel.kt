@@ -6,9 +6,9 @@ import com.company.starttoday.Domain.Routine.Entity.RoutineState
 import com.company.starttoday.Domain.Routine.Model.RoutineDomain
 import com.company.starttoday.Domain.Routine.Model.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
+import com.company.starttoday.Domain.Routine.UseCases.DeleteRoutineUseCase
 import com.company.starttoday.Domain.Routine.UseCases.SaveRoutineUseCase
 import com.company.starttoday.Domain.Routine.UseCases.SetRoutineTimeUseCase
-import com.company.starttoday.data.RoutineData.Room.RoutineDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,9 +22,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoutineViewModel @Inject constructor(
-    private val dao : RoutineDao,
     private val setRoutineTimeUseCase: SetRoutineTimeUseCase,
-    private val saveRoutineTimeUseCase : SaveRoutineUseCase
+    private val saveRoutineTimeUseCase : SaveRoutineUseCase,
+    private val deleteRoutineTimeUseCase: DeleteRoutineUseCase
 ) : ViewModel() {
 
     private val _routineTimeType = MutableStateFlow(RoutineType.TODAY)
@@ -51,7 +51,9 @@ class RoutineViewModel @Inject constructor(
         when(event) {
             is RoutineEvent.DeleteRoutine -> {
                 viewModelScope.launch {
-                    dao.deleteRoutine(event.routine)
+                    deleteRoutineTimeUseCase(event.routine)
+//                    dao.deleteRoutine(event.routine)
+
                 }
             }
             RoutineEvent.HideDialog -> {

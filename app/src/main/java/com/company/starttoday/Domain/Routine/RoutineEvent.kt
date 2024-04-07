@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Routine
 
-import com.company.starttoday.data.RoutineData.Room.Routine
+import com.company.starttoday.Domain.Routine.Model.RoutineDomain
 import com.company.starttoday.Domain.Routine.Model.RoutineType
 
 sealed interface RoutineEvent {
@@ -11,7 +11,7 @@ sealed interface RoutineEvent {
     data class SetRoutineTime(val routineTime : String) : RoutineEvent
     data class SetRoutineName(val routineName : String) : RoutineEvent
     data class RoutineTimeType(val routineType: RoutineType) : RoutineEvent
-    data class DeleteRoutine(val routine : Routine): RoutineEvent
+    data class DeleteRoutine(val routine : RoutineDomain): RoutineEvent
 
 }
 
