@@ -12,7 +12,6 @@ sealed interface RoutineEvent {
     data class SetRoutineName(val routineName : String) : RoutineEvent
     data class RoutineTimeType(val routineType: RoutineType) : RoutineEvent
     data class DeleteRoutine(val routine : RoutineDomain): RoutineEvent
-
 }
 
 

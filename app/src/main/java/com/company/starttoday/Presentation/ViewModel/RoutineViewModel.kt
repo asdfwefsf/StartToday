@@ -71,6 +71,7 @@ class RoutineViewModel @Inject constructor(
                 }
 
                 val routine = RoutineDomain(
+                    id = 0,
                     routineTime = routineTime,
                     routineName = routineName,
                 )

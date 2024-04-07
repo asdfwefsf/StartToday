@@ -15,9 +15,6 @@ interface RoutineDao {
     @Delete
     suspend fun deleteRoutine(routine: Routine)
 
-//    @Query("SELECT * FROM routine ORDER BY routineName DESC")
-////    fun getRotuineTimeToday(): Flow<List<Routine>>
-
-    @Query("SELECT * FROM routine WHERE routineTime = :timeType ORDER BY routineName DESC")
+    @Query("SELECT * FROM routine WHERE routineTime = :timeType ORDER BY routineName ASC")
     fun getRotuineTimeToday(timeType: String): Flow<List<Routine>>
 }
