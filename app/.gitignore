@@ -2,5 +2,6 @@
 
 /release
 
-com/company/starttoday/Core/Network/API
-메시지
+
+
+app/src/main/java/com/company/starttoday/Core/Network/API
