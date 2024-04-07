@@ -5,3 +5,6 @@
 2024-04-06
 1. ViewModel -> UseCase -> Repository <- RepositoryImpl 코드 수정 : 루틴 기간명 설정
 2. ViewModel -> UseCase -> Repository -> Model , Repository <- RepositoryImpl -> Mapper , DataSource : SaveRoutine , DeleteRoutine code logic update
+
+2024-04-07
+1. Domain <- Data : DTO Logic Update
