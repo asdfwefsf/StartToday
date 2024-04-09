@@ -1,8 +1,8 @@
 package com.company.starttoday.Domain.Alarm
 
-import com.company.starttoday.Domain.Alarm.Entity.AlarmItem
+import com.company.starttoday.Domain.Alarm.Model.DomainDTO
 
 interface AlarmScheduler {
-    fun schedule(item: AlarmItem)
-    fun cancel(item: AlarmItem)
+    fun schedule(item: DomainDTO)
+    fun cancel(item: DomainDTO)
 }

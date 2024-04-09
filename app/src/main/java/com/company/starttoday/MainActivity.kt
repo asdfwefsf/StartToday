@@ -27,10 +27,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Core.WorkManager.getInfoNowWork
 import com.company.starttoday.Core.WorkManager.getInfoWork
-import com.company.starttoday.data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
-import com.company.starttoday.data.ThingOnData.Room.ThingOnDatabase
 import com.company.starttoday.Presentation.Screen.BottomNav
 import com.company.starttoday.Theme.StartTodayTheme
+import com.company.starttoday.data.ThingOnData.Impl.UpdateThingOnRepositoryImpl
+import com.company.starttoday.data.ThingOnData.Room.ThingOnDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -98,7 +98,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-        checkFirstRun(context = this)
+//        checkFirstRun(context = this)
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 !splashViewModel.isReady.value
@@ -134,6 +134,7 @@ class MainActivity : ComponentActivity() {
         }
         getInfoWork(this)
         setContent {
+            checkFirstRun(context = this)
             StartTodayTheme {
 
                 Surface(
@@ -154,15 +155,9 @@ class MainActivity : ComponentActivity() {
     fun askPermissionForExactAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (!alarmManager.canScheduleExactAlarms()) {
-            Log.d("sibal1" , "sibal1")
-            Log.d("sibal1" , "sibal1")
             val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
             context.startActivity(intent)
-
         }
-        Log.d("sibal2" , intent.action.toString())
-        Log.d("sibal2" , "sibal")
-
     }
 
 

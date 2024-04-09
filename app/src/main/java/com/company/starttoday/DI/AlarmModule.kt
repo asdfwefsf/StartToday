@@ -1,5 +1,6 @@
 package com.company.starttoday.DI
 
+import android.app.AlarmManager
 import android.content.Context
 import androidx.room.Room
 import com.company.starttoday.data.AlarmData.Room.AlarmDao
@@ -30,19 +31,10 @@ object AlarmModule {
         return database.dao
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideAndroidAlarmScheduler(context : Context) : AndroidAlarmScheduler {
-//        return AndroidAlarmScheduler(context)
-//    }
+    @Provides
+    fun provideAlarmManager(@ApplicationContext context: Context): AlarmManager {
+        return context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    }
 
-
-
-
-//    @Provides
-//    @Singleton
-//    fun provideMediaPlayerManager(@ApplicationContext context: Context): MediaPlayerManager {
-//        return MediaPlayerManager(context)
-//    }
 }
 

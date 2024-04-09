@@ -1,10 +1,9 @@
-package com.company.starttoday.Domain.Alarm.Entity
+package com.company.starttoday.Domain.Alarm.Model
 
 import java.time.LocalDateTime
 
-data class AlarmItem(
+data class DomainDTO(
     val time: LocalDateTime,
-    val message: String,
     var startH: Int,
     var startM: Int,
     var term: Int,

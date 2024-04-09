@@ -1,5 +1,8 @@
 package com.company.starttoday.DI
 
+import com.company.starttoday.Domain.Alarm.Repository.AlarmCancelRepository
+import com.company.starttoday.Domain.Alarm.Repository.AlarmScheduleRepository
+import com.company.starttoday.Domain.Alarm.Repository.UpdateAlarmRepository
 import com.company.starttoday.Domain.Image.Repository.GetImageRepository
 import com.company.starttoday.Domain.Image.Repository.UpdateImageRepository
 import com.company.starttoday.Domain.Routine.Repository.DeleteRoutineRepository
@@ -7,6 +10,9 @@ import com.company.starttoday.Domain.Routine.Repository.SaveRoutineRepository
 import com.company.starttoday.Domain.Routine.Repository.SetRoutineTimeRepository
 import com.company.starttoday.Domain.ThingOn.Repository.GetThingOnRepository
 import com.company.starttoday.Domain.ThingOn.Repository.UpdateThingOnRepository
+import com.company.starttoday.data.AlarmData.Impl.AlarmCancelRepositoryImpl
+import com.company.starttoday.data.AlarmData.Impl.AlarmScheduleRepositoryImpl
+import com.company.starttoday.data.AlarmData.Impl.UpdateAlarmRepositoryImpl
 import com.company.starttoday.data.ImageLinkData.Impl.GetImageRepositoryImpl
 import com.company.starttoday.data.ImageLinkData.Impl.UpdateImageRepositoryImpl
 import com.company.starttoday.data.RoutineData.Impl.DeleteRoutineRepositoryImpl
@@ -40,6 +46,15 @@ object RepositoryModule {
 
     @Provides
     fun provideDeleteRoutineRepository(impl : DeleteRoutineRepositoryImpl) : DeleteRoutineRepository = impl
+
+    @Provides
+    fun provideAlarmCancelRepository(impl : AlarmCancelRepositoryImpl) : AlarmCancelRepository = impl
+
+    @Provides
+    fun provideAlarmScheduleRepository(impl : AlarmScheduleRepositoryImpl) : AlarmScheduleRepository = impl
+
+    @Provides
+    fun provideUpdateAlarmRepository(impl : UpdateAlarmRepositoryImpl) : UpdateAlarmRepository = impl
 
 
 

@@ -13,7 +13,7 @@ android {
         applicationId = "com.company.starttoday"
         minSdk = 31
         targetSdk = 34
-        versionCode = 7
+        versionCode = 8
         versionName = "1.0"
 
 

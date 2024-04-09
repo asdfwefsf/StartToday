@@ -11,5 +11,5 @@ interface AlarmDao {
     suspend fun upsertAlarm(alarm: Alarm)
 
     @Query("SELECT * FROM alarm ORDER BY id DESC")
-    fun getAlarm(): Flow<Alarm?>
+    fun getAlarm(): Flow<Alarm>
 }

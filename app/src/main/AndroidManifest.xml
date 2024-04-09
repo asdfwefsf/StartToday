@@ -7,6 +7,7 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -32,7 +33,15 @@
             tools:node="remove">
         </provider>
 
-        <receiver android:name=".Presentation.Alarm.AlarmReceiver"/>
+        <receiver android:name=".Presentation.Alarm.AlarmReceiver"
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="startMusic" />-->
+<!--            </intent-filter>-->
+        </receiver>
+
+
+
             <receiver android:name=".Presentation.Alarm.AlarmCancelReceiver"/>
 
         <receiver android:name=".AlarmPermissionReceiver"

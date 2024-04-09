@@ -47,43 +47,32 @@ fun BottomNav() {
             Screen.MainScreen.route , Screen.AlarmScreen.route,
                Screen.RoutineScreen.route)
 
-
     val items = listOf(
 
-
         BottomNavItem(
-            title = "Alarm",
+            title = "알람",
             selectedIcon = R.drawable.alarm_icon,
             unselectedIcon = R.drawable.alarm_icon,
 
             ),
 
         BottomNavItem(
-            title = "Main",
+            title = "홈",
             selectedIcon = R.drawable.main_icon,
             unselectedIcon = R.drawable.main_icon,
 
             ),
 
         BottomNavItem(
-            title = "Routine",
+            title = "일정",
             selectedIcon = R.drawable.routine_icon,
             unselectedIcon = R.drawable.routine_icon,
         ),
-
-
-
     )
 
     var selectedItemIndex by rememberSaveable {
         mutableStateOf(1)
     }
-
-//    val stringAllViewModel: StringAllViewModel = hiltViewModel()
-
-//    var selectedItemIndex by rememberSaveable {
-//        stringAllViewModel.pagerState
-//    }
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -109,29 +98,6 @@ fun BottomNav() {
                             },
                             alwaysShowLabel = true,
                             icon = {
-//                                BadgedBox(
-//                                    badge = {
-//                                        if(bottomNavItem.badgeCount != null) {
-//                                            Badge {
-//                                                Text(text = bottomNavItem.badgeCount.toString())
-//                                            }
-//                                        } else if(bottomNavItem.alarm) {
-//                                            Badge()
-//                                        }
-//                                    }
-//                                ){
-
-                                // 기존 Icon 코드
-//                                Icon(
-//                                    imageVector = if (index == selectedItemIndex) {
-//                                        bottomNavItem.selectedIcon
-//                                    } else {
-//                                        bottomNavItem.unselectedIcon
-//                                    },
-//                                    contentDescription = bottomNavItem.title
-//                                )
-                                // 기존 Icon 코드
-
                                 Image(
                                     painter = painterResource(id = bottomNavItem.selectedIcon),
                                     contentDescription = "test",
@@ -139,10 +105,6 @@ fun BottomNav() {
                                         .size(24.dp)
                                         .clip(CircleShape)
                                 )
-
-//                                }
-
-
                             },
                             colors = NavigationBarItemDefaults.colors(MaterialTheme.colorScheme.background)
                         )
@@ -157,14 +119,10 @@ fun BottomNav() {
             composable(route = Screen.MainScreen.route) {
                 val viewModel = hiltViewModel<ImageLinkViewModel>()
                 val count by viewModel.page.collectAsStateWithLifecycle()
-
                 MainScreen(count)
             }
 
             composable(route = Screen.AlarmScreen.route) {
-//                val viewModel = hiltViewModel<ThingOnViewModel>()
-//                val count by viewModel.page.collectAsStateWithLifecycle()
-
                 AlarmScreen(navController)
             }
 
@@ -175,15 +133,9 @@ fun BottomNav() {
             composable(route = Screen.RoutineScreen.route) {
                 val viewModel = hiltViewModel<RoutineViewModel>()
                 val state by viewModel.state.collectAsState()
-
                 RoutineScreen(state = state, onEvent = viewModel::onEvent)
             }
-
-
-
         }
-
-
     }
 }
 

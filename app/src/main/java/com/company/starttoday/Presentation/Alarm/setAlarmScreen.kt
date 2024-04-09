@@ -18,17 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.company.starttoday.data.AlarmData.AndroidAlarmScheduler
-import com.company.starttoday.Domain.Alarm.Entity.AlarmItem
 import com.company.starttoday.R
 import com.company.starttoday.Theme.Sizes
-import java.time.LocalDateTime
 
 @Composable
 fun setAlarmScreen(navController: NavController) {
@@ -42,7 +38,6 @@ fun setAlarmScreen(navController: NavController) {
 
 @Composable
 fun TimePickerSlider(navController: NavController) {
-    // State를 정의합니다.
 
     val alarmViewModel : AlarmViewModel = hiltViewModel()
 
@@ -51,9 +46,6 @@ fun TimePickerSlider(navController: NavController) {
     var term by remember { mutableStateOf(0f) }
     var endHours by remember { mutableStateOf(0f) }
     var endMinutes by remember { mutableStateOf(0f) }
-
-
-    val scheduler = AndroidAlarmScheduler(LocalContext.current)
 
 
 
@@ -130,20 +122,16 @@ fun TimePickerSlider(navController: NavController) {
             contentDescription = "",
             modifier = Modifier
                 .clickable {
+
                     alarmViewModel.setAlarm(
+
                         listOf(startHours.toInt(), startMinutes.toInt(), term.toInt() ,
                             endHours.toInt() , endMinutes.toInt())
                     )
 
-                    val alarmItem = AlarmItem(
-                        LocalDateTime.now(),"dd"
-                        ,startHours.toInt(), startMinutes.toInt(), term.toInt() ,
-                        endHours.toInt() , endMinutes.toInt()
-                    )
 
-                    alarmItem.let(scheduler::schedule)
 
-                    navController.navigate("Alarm")
+                    navController.navigate("알람")
 
                 }
                 .clip(CircleShape)
