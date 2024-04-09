@@ -11,3 +11,7 @@
 
 2024-04-08
 1. ViewModel -> UseCase -> Repository -> Model , Repository <- RepositoryImpl -> Mapper , DataSource : ScheduleAlarm , SetAlarm Logic update
+
+2024-04-09 
+:1차 데드라인 마감
+:2차 업데이트 : TODO(알람 리스트 추가 , 알람 UI 업데이트 , 알람 알림창 UI 수정)
