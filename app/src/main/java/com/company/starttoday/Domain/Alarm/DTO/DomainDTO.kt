@@ -1,4 +1,4 @@
-package com.company.starttoday.Domain.Alarm.Model
+package com.company.starttoday.Domain.Alarm.DTO
 
 import java.time.LocalDateTime
 

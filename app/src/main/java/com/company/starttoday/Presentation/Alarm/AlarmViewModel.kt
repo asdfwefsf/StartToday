@@ -2,7 +2,7 @@ package com.company.starttoday.Presentation.Alarm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Domain.Alarm.Model.DomainDTO
+import com.company.starttoday.Domain.Alarm.DTO.DomainDTO
 import com.company.starttoday.Domain.Alarm.UseCases.AlarmCancelUseCase
 import com.company.starttoday.Domain.Alarm.UseCases.AlarmScheduleUseCase
 import com.company.starttoday.Domain.Alarm.UseCases.UpdateAlarmUseCase

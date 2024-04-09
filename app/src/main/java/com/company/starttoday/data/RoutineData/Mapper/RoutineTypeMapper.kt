@@ -1,6 +1,6 @@
 package com.company.starttoday.data.RoutineData.Mapper
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
 import com.company.starttoday.data.RoutineData.Room.Routine
 
 fun Routine.toDomainModel(): RoutineDomain {

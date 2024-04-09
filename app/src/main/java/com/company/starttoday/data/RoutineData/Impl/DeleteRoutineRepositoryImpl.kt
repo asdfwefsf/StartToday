@@ -1,6 +1,6 @@
 package com.company.starttoday.data.RoutineData.Impl
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
 import com.company.starttoday.Domain.Routine.Repository.DeleteRoutineRepository
 import com.company.starttoday.data.RoutineData.Mapper.toRoutine
 import com.company.starttoday.data.RoutineData.Room.RoutineDao

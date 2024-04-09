@@ -1,6 +1,6 @@
 package com.company.starttoday.data.AlarmData.Impl
 
-import com.company.starttoday.Domain.Alarm.Model.DomainDTO
+import com.company.starttoday.Domain.Alarm.DTO.DomainDTO
 import com.company.starttoday.Domain.Alarm.Repository.UpdateAlarmRepository
 import com.company.starttoday.data.AlarmData.Mapper.toDomainDTO
 import com.company.starttoday.data.AlarmData.Room.AlarmDao

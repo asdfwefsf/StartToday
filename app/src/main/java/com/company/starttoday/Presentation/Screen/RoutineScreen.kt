@@ -33,8 +33,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.company.starttoday.Domain.Routine.Model.RoutineType
-import com.company.starttoday.Domain.Routine.Entity.RoutineState
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
+import com.company.starttoday.Domain.Routine.Model.RoutineState
 import com.company.starttoday.Domain.Routine.RoutineEvent
 import com.company.starttoday.Presentation.AlertDialog.AddRoutineDialog
 import com.company.starttoday.R

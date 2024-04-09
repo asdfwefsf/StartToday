@@ -3,7 +3,6 @@ package com.company.starttoday.Presentation.ThingOn_Image.ViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Domain.Image.UseCases.UpdateImageUseCase
-import com.company.starttoday.Presentation.ThingOn_Image.ViewModel.ImageCounter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

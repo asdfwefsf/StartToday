@@ -2,9 +2,9 @@ package com.company.starttoday.Presentation.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.company.starttoday.Domain.Routine.Entity.RoutineState
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
-import com.company.starttoday.Domain.Routine.Model.RoutineType
+import com.company.starttoday.Domain.Routine.Model.RoutineState
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
 import com.company.starttoday.Domain.Routine.UseCases.DeleteRoutineUseCase
 import com.company.starttoday.Domain.Routine.UseCases.SaveRoutineUseCase

@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Alarm.UseCases
 
-import com.company.starttoday.Domain.Alarm.Model.DomainDTO
+import com.company.starttoday.Domain.Alarm.DTO.DomainDTO
 import com.company.starttoday.Domain.Alarm.Repository.AlarmCancelRepository
 import javax.inject.Inject
 

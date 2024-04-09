@@ -21,8 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.company.starttoday.Domain.Routine.Entity.RoutineState
-import com.company.starttoday.Domain.Routine.Model.RoutineType
+import com.company.starttoday.Domain.Routine.Model.RoutineState
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
 import com.company.starttoday.Domain.Routine.RoutineEvent
 
 

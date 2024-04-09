@@ -1,7 +1,7 @@
 package com.company.starttoday.Domain.Routine
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
-import com.company.starttoday.Domain.Routine.Model.RoutineType
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
 
 sealed interface RoutineEvent {
     object SaveRoutine : RoutineEvent

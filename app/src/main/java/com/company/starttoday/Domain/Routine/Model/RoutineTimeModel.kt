@@ -1,6 +1,6 @@
-package com.company.starttoday.Domain.Routine.Entity
+package com.company.starttoday.Domain.Routine.Model
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
 
 data class RoutineState(
     val routines: List<RoutineDomain> = emptyList(),

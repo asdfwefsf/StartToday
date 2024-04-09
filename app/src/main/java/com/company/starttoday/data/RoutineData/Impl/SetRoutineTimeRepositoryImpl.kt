@@ -1,7 +1,7 @@
 package com.company.starttoday.data.RoutineData.Impl
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
-import com.company.starttoday.Domain.Routine.Model.RoutineType
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
 import com.company.starttoday.Domain.Routine.Repository.SetRoutineTimeRepository
 import com.company.starttoday.data.RoutineData.Mapper.toDomainModel
 import com.company.starttoday.data.RoutineData.Room.RoutineDao

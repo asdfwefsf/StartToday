@@ -1,6 +1,6 @@
 package com.company.starttoday.data.AlarmData.Mapper
 
-import com.company.starttoday.Domain.Alarm.Model.DomainDTO
+import com.company.starttoday.Domain.Alarm.DTO.DomainDTO
 import com.company.starttoday.data.AlarmData.Room.Alarm
 import java.time.LocalDateTime
 

@@ -1,4 +1,4 @@
-package com.company.starttoday.Domain.Routine.Model
+package com.company.starttoday.Domain.Routine.DTO
 
 enum class RoutineType(val typeName : String) {
 

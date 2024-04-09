@@ -4,7 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.company.starttoday.Domain.Alarm.Model.DomainDTO
+import com.company.starttoday.Domain.Alarm.DTO.DomainDTO
 import com.company.starttoday.Domain.Alarm.Repository.AlarmScheduleRepository
 import com.company.starttoday.Presentation.Alarm.AlarmReceiver
 import com.company.starttoday.data.AlarmData.Mapper.toEntity

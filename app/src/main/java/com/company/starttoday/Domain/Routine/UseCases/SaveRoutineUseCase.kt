@@ -1,6 +1,6 @@
 package com.company.starttoday.Domain.Routine.UseCases
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
 import com.company.starttoday.Domain.Routine.Repository.SaveRoutineRepository
 import javax.inject.Inject
 

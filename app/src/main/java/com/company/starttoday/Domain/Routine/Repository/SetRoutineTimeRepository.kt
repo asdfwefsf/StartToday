@@ -1,7 +1,7 @@
 package com.company.starttoday.Domain.Routine.Repository
 
-import com.company.starttoday.Domain.Routine.Model.RoutineDomain
-import com.company.starttoday.Domain.Routine.Model.RoutineType
+import com.company.starttoday.Domain.Routine.DTO.RoutineDomain
+import com.company.starttoday.Domain.Routine.DTO.RoutineType
 import kotlinx.coroutines.flow.Flow
 
 interface SetRoutineTimeRepository {
