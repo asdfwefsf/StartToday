@@ -8,3 +8,6 @@
 
 2024-04-07
 1. Domain <- Data : DTO Logic Update
+
+2024-04-08
+1. ViewModel -> UseCase -> Repository -> Model , Repository <- RepositoryImpl -> Mapper , DataSource : ScheduleAlarm , SetAlarm Logic update
