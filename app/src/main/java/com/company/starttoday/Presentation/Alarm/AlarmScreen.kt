@@ -33,6 +33,10 @@ fun AlarmScreen(navController: NavController) {
     val alarmTerm = alarmState.term.toString()
     val endHour = alarmState.endH.toString()
     val endMinute = alarmState.endM.toString()
+    val dto = listOf(
+        startHour.toInt() , startMinute.toInt() ,
+        alarmTerm.toInt() , endHour.toInt() , endMinute.toInt()
+    )
 
     ConstraintLayout(
         modifier = Modifier.fillMaxSize() // ConstraintLayout을 화면 전체로 확장
@@ -77,21 +81,20 @@ fun AlarmScreen(navController: NavController) {
 
 
 
-        Image(
-            painter = painterResource(id = R.drawable.delete_icon),
-            modifier = Modifier
-                .clickable {
-//                    androidAlarmScheduler.cancel()
-                    alarmViewModel.cancelAlarm()
-                }
-                .constrainAs(deleteImage) {
-                    top.linkTo(alarm.bottom, margin = 70.dp)
-                    end.linkTo(parent.end, margin = Sizes.medium)
-                }
-                .size(30.dp)
-                .clip(CircleShape),
-            contentDescription = "alarm delete"
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.delete_icon),
+//            modifier = Modifier
+//                .clickable {
+//                    alarmViewModel.cancelAlarm(dto)
+//                }
+//                .constrainAs(deleteImage) {
+//                    top.linkTo(alarm.bottom, margin = 70.dp)
+//                    end.linkTo(parent.end, margin = Sizes.medium)
+//                }
+//                .size(30.dp)
+//                .clip(CircleShape),
+//            contentDescription = "alarm delete"
+//        )
 
     }
 

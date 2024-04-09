@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.company.starttoday.Domain.Alarm.Model.DomainDTO
 import com.company.starttoday.Domain.Alarm.Repository.AlarmScheduleRepository
 import com.company.starttoday.Presentation.Alarm.AlarmReceiver
@@ -27,21 +26,8 @@ class AlarmScheduleRepositoryImpl @Inject constructor(
             putExtra("endM", String.format("%02d", item.endM))
             action = "startMusic"
         }
-        Log.d("gonee" , "Impl OK")
-        Log.d("gonee" , item.startH.toString())
-        Log.d("gonee" , item.startM.toString())
-        Log.d("gonee" , item.term.toString())
-        Log.d("gonee" , item.endH.toString())
-        Log.d("gonee" , item.endM.toString())
-        Log.d("gonee" , item.time.toString())
-
-        val zonedDateTime = item.time.atZone(ZoneId.systemDefault())
-        Log.d("gonee" , zonedDateTime.toString())
 
         dao.upsertAlarm(item.toEntity())
-
-
-
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,

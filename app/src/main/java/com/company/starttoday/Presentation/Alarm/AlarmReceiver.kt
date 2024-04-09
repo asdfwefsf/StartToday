@@ -48,12 +48,6 @@ class AlarmReceiver : BroadcastReceiver() {
         var currentTimeHourMinute = currentTime.format(formatter).split(":")
         var currentHour = currentTimeHourMinute[0].trim()
         var currentMinute = currentTimeHourMinute[1].trim()
-        Log.d("localTime: ", startHour)
-        Log.d("localTime : ", startMinute)
-        Log.d("localTime : ", "currentHour : $currentHour")
-        Log.d("localTime : ", endHour)
-        Log.d("localTime : ", endMinute)
-        Log.d("gonee", "Receiver OK")
 
 
         // 알림 코드 시작
@@ -69,7 +63,6 @@ class AlarmReceiver : BroadcastReceiver() {
             notificationManager.createNotificationChannel(channel)
         }
         val cancelIntent = Intent(context, AlarmCancelReceiver::class.java).apply {
-            // 알람 취소 액션 식별자 추가
             action = "stopMusic"
         }
         val cancelPendingIntent = PendingIntent.getBroadcast(
@@ -88,39 +81,33 @@ class AlarmReceiver : BroadcastReceiver() {
             MediaPlayerManager.getMediaPlayer(context)
         }
 
-
         // 백그라운드에서 알람 관찰하기
         val IoScope = CoroutineScope(Dispatchers.IO)
         val musicScope = CoroutineScope(Dispatchers.Main)
 
         when (intent.action) {
             "startMusic" ->
-
                 IoScope.launch {
-
                     while (isActive) {
                         formatter = DateTimeFormatter.ofPattern("HH:mm")
                         currentTime = LocalTime.now().toString()
                         currentTimeHourMinute = currentTime.format(formatter).split(":")
                         currentHour = currentTimeHourMinute[0].trim()
                         currentMinute = currentTimeHourMinute[1].trim()
-                        Log.d("siba", "sibaaaaaaaaaaaaaaa")
 
                         if (startHour == currentHour && startMinute == currentMinute) {
                             musicScope.launch {
                                 repeat(alarmTerm) {
                                     MediaPlayerManager.startMusic()
                                     delay(alarmTerm.toLong() * 1000 * 60)
-
                                 }
-
                             }
                             notificationManager.notify(1, notificationBuilder.build())
                         }
                     }
                 }
+
+
         }
     }
-
-
 }

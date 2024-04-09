@@ -122,15 +122,10 @@ fun TimePickerSlider(navController: NavController) {
             contentDescription = "",
             modifier = Modifier
                 .clickable {
-
                     alarmViewModel.setAlarm(
-
                         listOf(startHours.toInt(), startMinutes.toInt(), term.toInt() ,
                             endHours.toInt() , endMinutes.toInt())
                     )
-
-
-
                     navController.navigate("알람")
 
                 }

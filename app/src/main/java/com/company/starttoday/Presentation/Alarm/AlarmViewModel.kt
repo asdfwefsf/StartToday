@@ -1,6 +1,5 @@
 package com.company.starttoday.Presentation.Alarm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.company.starttoday.Domain.Alarm.Model.DomainDTO
@@ -47,17 +46,19 @@ class AlarmViewModel @Inject constructor(
 
     fun setAlarm(list: List<Int>) {
         viewModelScope.launch {
-            val alarm = DomainDTO(
+            val startAlarm = DomainDTO(
                 startH = list[0], startM = list[1], term = list[2],
                 endH = list[3], endM = list[4] , time = LocalDateTime.now())
-            alarmScheduleUseCase(alarm)
-            Log.d("gonees" , LocalDateTime.now().toString())
-
+            alarmScheduleUseCase(startAlarm)
         }
     }
 
-    fun cancelAlarm() {
+    fun cancelAlarm(list : List<Int>) {
         viewModelScope.launch {
+            val cancelAlarm = DomainDTO(
+                startH = list[0], startM = list[1], term = list[2],
+                endH = list[3], endM = list[4] , time = LocalDateTime.now())
+            alarmCancelUseCase(cancelAlarm)
         }
     }
 }
