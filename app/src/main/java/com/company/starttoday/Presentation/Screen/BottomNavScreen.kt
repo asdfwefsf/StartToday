@@ -60,7 +60,6 @@ fun BottomNav() {
             title = "홈",
             selectedIcon = R.drawable.main_icon,
             unselectedIcon = R.drawable.main_icon,
-
             ),
 
         BottomNavItem(

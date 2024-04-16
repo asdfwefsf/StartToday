@@ -1,7 +1,7 @@
 package com.company.starttoday.data.ThingOnData.Impl
 
-import com.company.starttoday.data.ThingOnData.Room.ThingOnDao
 import com.company.starttoday.Domain.ThingOn.Repository.UpdateThingOnRepository
+import com.company.starttoday.data.ThingOnData.Room.ThingOnDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
