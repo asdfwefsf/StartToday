@@ -140,14 +140,10 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     color = MaterialTheme.colorScheme.primary
                 ) {
-
                     BottomNav()
-
                     askNotificationPermission()
                     askPermissionForExactAlarm(this)
                 }
-
-
             }
         }
     }
